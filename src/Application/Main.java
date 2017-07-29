@@ -34,10 +34,6 @@ public class Main extends Application {
         Pane root = new Pane();
 
         drawMenu(primaryStage, root);
-        //Event selon l'etat du jeu
-
-        drawMenu(primaryStage, root);
-
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,Entities.WINDOW_WIDTH ,Entities.WINDOW_HEIGHT ));
         primaryStage.show();
