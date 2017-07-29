@@ -1,7 +1,7 @@
 package Model;
 
 import Application.Main;
-import javafx.scene.image.Image;
+import Model.Actions.MoveTo;
 
 public class GameModel {
 
@@ -39,7 +39,7 @@ public class GameModel {
     }
 
     public void nextStep(double elapsedTime) {
-
+        _player.getActionQueue().executeNext();
     }
 
     public Map getMap() {
@@ -53,6 +53,8 @@ public class GameModel {
     private void updateCaseClicked(Case cell) {
         System.out.println("UpdateCase Ok");
         cell.set_surbrillance(true);
+        _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
+        _player.getActionQueue().executeNext();
         Main.get_drawGame().update(this);
     }
 

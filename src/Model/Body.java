@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 
 public class Body {
 
+    private ActionQueue actionQueue;
     private int pos_x;
     private int pos_y;
     private GameModel.Observer _observer;
@@ -15,6 +16,7 @@ public class Body {
     private ImageView _imageView;
 
     public Body(int posX, int posY, CharacterTypes characcter, GameModel.Observer observer) {
+        actionQueue = new ActionQueue(this);
         pos_x = posX;
         pos_y = posY;
         Image image = new Image("/resources/robot.png", true);
@@ -27,12 +29,12 @@ public class Body {
     }
 
     public boolean moveUp() {
-        setPos_y(getPos_y() + 1);
+        setPos_y(getPos_y() - 1);
         return true;
     }
 
     public boolean moveDown() {
-        setPos_y(getPos_y() - 1);
+        setPos_y(getPos_y() + 1);
         return true;
     }
 
@@ -77,4 +79,7 @@ public class Body {
         return pos_x;
     }
 
+    public ActionQueue getActionQueue() {
+        return actionQueue;
+    }
 }
