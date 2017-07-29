@@ -64,13 +64,6 @@ public class Main extends Application {
                 {
                     public void handle(long currentNanoTime)
                     {
-
-                        /*try{
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
-
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
                         //System.out.println(t);
                         /*root.getChildren().clear();
@@ -131,6 +124,10 @@ public class Main extends Application {
 
     public static Pane getRoot() {
         return root;
+    }
+
+    public static void setRoot(Pane root) {
+        Main.root = root;
     }
 
     public static DrawGame get_drawGame() {

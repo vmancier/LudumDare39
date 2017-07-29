@@ -30,7 +30,9 @@ public class ActionQueue {
     }
 
     public void executeNext() {
-        this.getFirst().execute();
-        this.removeFirst();
+        if (!Queue.isEmpty()){
+            this.getFirst().execute();
+            this.removeFirst();
+        }
     }
 }

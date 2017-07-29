@@ -1,9 +1,6 @@
 package Application;
 
-import Model.Case;
-import Model.GameModel;
-import Model.Map;
-import Model.Player;
+import Model.*;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -27,9 +24,11 @@ public class DrawGame {
     }
 
     public void update(GameModel gameModel) {
+        Pane pane=new Pane();
+        pane.getChildren().add(background);
+        drawMap(gameModel.getMap(), pane);
         Main.getRoot().getChildren().clear();
-        Main.getRoot().getChildren().add(background);
-        drawMap(gameModel.getMap(), Main.getRoot());
+        Main.getRoot().getChildren().add(pane);
     }
 
     private static void drawMap(Map map, Pane root) {
@@ -39,17 +38,14 @@ public class DrawGame {
                 root.getChildren().add(map.getCase(i, j).get_imageView());
             }
         }
-        //System.out.println("test");
     }
 
     private static void drawCase(int pos_x, int pos_y, Case cell, Pane root) {
         cell.setPosition(pos_x, pos_y);
-
         root.getChildren().add(cell.get_imageView());
-
     }
 
-    private static void drawPlayer(int x, int y, Player player, Pane root) {
+    private static void drawBody(Body body, Pane root) {
 
     }
 
