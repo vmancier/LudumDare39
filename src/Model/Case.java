@@ -4,8 +4,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import static Application.Entities.TILE_SIZE;
-
 enum Type {Floor, Hole}
 
 public class Case {
@@ -25,7 +23,7 @@ public class Case {
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
-            this.setImage(new Image("/resources/hole.jpg", true));
+            set_free(false);
             System.out.println("x : " +pos_x+" y : "+ pos_y);
         });
     }
@@ -54,6 +52,21 @@ public class Case {
 
     public void setPos_y(int pos_y) {
         this.pos_y = pos_y;
+    }
+
+    public boolean is_free() {
+        return _free;
+    }
+
+    public void set_free(boolean _free) {
+        this._free = _free;
+        if (_free){
+            this.setImage(new Image("/resources/base.jpg", true));
+        }
+        else{
+            this.setImage(new Image("/resources/hole.jpg", true));
+        }
+//        @TODO actualiser graphe
     }
 }
 
