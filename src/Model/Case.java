@@ -59,7 +59,7 @@ public class Case {
 
     public void set_free(boolean _free) {
         this._free = _free;
-        if (_free){
+        if (this.is_free()){
             this.setImage(new Image("/resources/base.jpg", true));
         }
         else{

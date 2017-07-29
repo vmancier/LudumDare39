@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 import java.util.Random;
 
 import static Application.Entities.*;
@@ -19,6 +18,8 @@ public class DrawGame {
 
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
     Random rnd = new Random(2);
+    Player _player = new Player(0, 0, CharacterTypes.Player);
+
     public DrawGame() {
 
     }
@@ -27,6 +28,7 @@ public class DrawGame {
         Pane pane=new Pane();
         pane.getChildren().add(background);
         drawMap(gameModel.getMap(), pane);
+        drawBody(_player, pane);
         Main.getRoot().getChildren().clear();
         Main.getRoot().getChildren().add(pane);
     }
@@ -46,6 +48,8 @@ public class DrawGame {
     }
 
     private static void drawBody(Body body, Pane root) {
+
+        root.getChildren().add(body.get_imageView());
 
     }
 
