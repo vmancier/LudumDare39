@@ -1,6 +1,4 @@
-package Application;
-
-import Model.GameModel;
+package Model;
 
 import java.awt.event.MouseEvent;
 

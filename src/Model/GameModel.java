@@ -1,7 +1,5 @@
 package Model;
 
-import Application.Case;
-
 enum CharacterTypes {Player};
 
 public class GameModel {
