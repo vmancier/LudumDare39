@@ -68,7 +68,6 @@ public class Main extends Application {
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
                         if (t - last > 0.3 ){
-                            System.out.println("called !");
                             last = t;
                             _model.nextStep(0);
                         }

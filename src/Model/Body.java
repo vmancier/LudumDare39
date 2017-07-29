@@ -44,7 +44,6 @@ public class Body {
 
     public boolean moveRight() {
         setPos_x(getPos_x() + 1);
-        System.out.println("Trying to move");
         return true;
     }
 

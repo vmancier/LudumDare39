@@ -1,5 +1,6 @@
 package Model;
 
+import Application.DrawGame;
 import Application.Main;
 import Model.Actions.MoveTo;
 
@@ -33,13 +34,13 @@ public class GameModel {
         }
 
         public void bodyClicked(Body body) {
-            body.moveRight();
             updateBodyClicked(body);
         }
     }
 
     public void nextStep(double elapsedTime) {
         _player.getActionQueue().executeNext();
+        Main.get_drawGame().update(this);
     }
 
     public Map getMap() {

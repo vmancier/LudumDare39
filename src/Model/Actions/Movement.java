@@ -1,6 +1,7 @@
 package Model.Actions;
 
 
+import Application.Main;
 import Model.ActionQueue;
 import Model.Body;
 
@@ -18,8 +19,6 @@ public class Movement implements Action {
         this.queue = moveTo.getQueue();
         this.body = queue.getBody();
     }
-
-//    @TODO si interruption, remplacer par un MoveTo
 
     @Override
     public void execute() {
