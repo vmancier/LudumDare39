@@ -58,15 +58,22 @@ public class Main extends Application {
                 {
                     public void handle(long currentNanoTime)
                     {
-                        //root.getChildren().clear();
+                        root.getChildren().clear();
+
+                        try{
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                        //System.out.println(t);
-                        //_drawGame.update(root,_model);
+                        System.out.println(t);
+                        _drawGame.update(root,_model);
                     }
                 }.start();
 
                 //_model.nextStep(elapsedTime);
-                _drawGame.update(root,_model);
+                //_drawGame.update(root,_model);
             }
 
         });
