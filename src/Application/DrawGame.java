@@ -1,15 +1,18 @@
 package Application;
 
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class DrawGame {
 
     Stage primaryStage;
-    Group root;
+    Pane root;
 
-    public DrawGame(Stage stage, Group r){
+    public DrawGame(Stage stage, Pane r){
         root=r;
         primaryStage=stage;
     }
+
+
 }

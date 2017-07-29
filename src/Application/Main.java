@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -31,7 +32,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(Entities.GAME_NAME);
-        Group root = new Group();
+        Pane root = new Pane();
 
         //Event selon l'etat du jeu
         switch (_gs)
@@ -62,7 +63,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void drawMenu(Stage primaryStage, Group root){
+    public void drawMenu(Stage primaryStage, Pane root){
         //Assigne une image à un bouton
         //Image imageDecline = new Image(getClass().getResourceAsStream("not.png"));
         //button5.setGraphic(new ImageView(imageDecline));
@@ -115,19 +116,19 @@ public class Main extends Application {
         root.getChildren().add(quit);
     }
 
-    public void drawGame(Stage primaryStage, Group root){
+    public void drawGame(Stage primaryStage, Pane root){
 
     }
 
-    public void drawLose(Stage primaryStage, Group root){
+    public void drawLose(Stage primaryStage, Pane root){
 
     }
 
-    public void drawSettings(Stage primaryStage, Group root){
+    public void drawSettings(Stage primaryStage, Pane root){
 
     }
 
-    public void drawSubMenu(Stage primaryStage, Group root){
+    public void drawSubMenu(Stage primaryStage, Pane root){
 
     }
 }
