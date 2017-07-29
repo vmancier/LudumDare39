@@ -5,21 +5,19 @@ import javafx.scene.layout.Pane;
 
 public class Character {
 
-    private int x;
-    private int y;
+    private int pos_x;
+    private int pos_y;
     Image image;
 
     public Character(int posX, int posY, CharacterTypes characcter){
-        x=posX;
-        y=posY;
+        pos_x=posX;
+        pos_y=posY;
         Image image = new Image("/resources/robot.png", true);
     }
 
-    public void moveTo(int[][] new_position){
-    }
-
-    public void drawCharacter(Pane root){
-
+    public void setPosition(int posX, int posY) {
+        pos_x = posX;
+        pos_y = posY;
     }
 
 }

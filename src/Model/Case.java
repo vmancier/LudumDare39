@@ -4,14 +4,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import static Application.Entities.TILE_SIZE;
-
 enum Type {Floor, Hole}
 
 public class Case {
 
-    private int _x;
-    private int _y;
+    private int pos_x;
+    private int pos_y;
     private boolean _free;
     private Type _type;
     private GameModel.Observer _observer;
@@ -25,7 +23,7 @@ public class Case {
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
-            System.out.println("x : " +_x+" y : "+_y);
+            System.out.println("x : " +pos_x+" y : "+ pos_y);
         });
     }
 
@@ -33,9 +31,9 @@ public class Case {
         return _imageView;
     }
 
-    public void setPosition(int x, int y){
-        _imageView.setX(x);
-        _imageView.setY(y);
+    public void setPosition(int pix_x, int pix_y){
+        _imageView.setX(pix_x);
+        _imageView.setY(pix_y);
     }
 
     public void setImage(Image img){
@@ -47,12 +45,12 @@ public class Case {
         });
     }
 
-    public void set_x(int _x) {
-        this._x = _x;
+    public void setPos_x(int _x) {
+        this.pos_x = _x;
     }
 
-    public void set_y(int _y) {
-        this._y = _y;
+    public void setPos_y(int pos_y) {
+        this.pos_y = pos_y;
     }
 }
 
