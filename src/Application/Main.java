@@ -60,7 +60,8 @@ public class Main extends Application {
                 //Problems
                 break;
         }
-
+        
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,Entities.WINDOW_WIDTH ,Entities.WINDOW_HEIGHT ));
         primaryStage.show();
     }
