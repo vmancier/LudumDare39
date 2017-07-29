@@ -30,7 +30,6 @@ public class DrawGame {
     }
 
     private static void drawMap(Map map, Pane root) {
-        Image image = new Image("/resources/base.jpg", true);
         for (int i = 0; i < TILE_PER_HEIGHT; i++) {
             for (int j = 0; j < TILE_PER_WIDTH; j++) {
                 map.getCase(i, j).setPosition(i * TILE_SIZE, j * TILE_SIZE);

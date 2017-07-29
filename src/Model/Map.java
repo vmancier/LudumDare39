@@ -22,7 +22,7 @@ public class Map {
         }
     }
 
-    public Case getCase(int i, int j){
+    public Case getCase(int i, int j) {
         return floor[i][j];
     }
 

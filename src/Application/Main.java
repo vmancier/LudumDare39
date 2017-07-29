@@ -23,8 +23,8 @@ public class Main extends Application {
     private static long _time;
 
     public static void main(String args[]) {
-        _model = new GameModel();
         _drawGame = new DrawGame();
+        _model = new GameModel(_drawGame);
         _time = System.currentTimeMillis();
         launch(args);
     }

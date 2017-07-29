@@ -1,5 +1,6 @@
 package Model;
 
+import Application.DrawGame;
 import javafx.scene.image.Image;
 
 enum CharacterTypes {Player};
@@ -7,11 +8,13 @@ enum CharacterTypes {Player};
 public class GameModel {
 
     private Map map;
+    private DrawGame drawGame;
 
 
-    public GameModel() {
+    public GameModel(DrawGame drawGame) {
         Observer observer = new Observer();
-        map=new Map(observer);
+        map = new Map(observer);
+        this.drawGame = drawGame;
     }
 
     public class Observer {
@@ -36,8 +39,8 @@ public class GameModel {
         this.map = map;
     }
 
-    private static void updateCaseClicked(Case cell) {
-        //cell.setImage(new Image("/resources/hole.jpg", true));
+    public void updateCaseClicked(Case cell) {
+        cell.setImage(new Image("/resources/hole.jpg", true));
     }
 }
 

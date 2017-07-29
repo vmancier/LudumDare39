@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import static Application.Entities.TILE_SIZE;
+
 enum Type {Floor, Hole}
 
 public class Case {
@@ -23,6 +25,7 @@ public class Case {
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
+            this.setImage(new Image("/resources/hole.jpg", true));
             System.out.println("x : " +pos_x+" y : "+ pos_y);
         });
     }
