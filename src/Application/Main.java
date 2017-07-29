@@ -24,6 +24,7 @@ public class Main extends Application {
     private static DrawGame _drawGame;
     private static long _time;
     private static Pane root = new Pane();
+    private double last = 0;
 
     public static void main(String args[]) {
         _drawGame = new DrawGame();
@@ -65,7 +66,12 @@ public class Main extends Application {
                     public void handle(long currentNanoTime)
                     {
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                        //System.out.println(t);
+
+                        if (t - last > 0.3 ){
+                            System.out.println("called !");
+                            last = t;
+                            _model.nextStep(0);
+                        }
                         /*root.getChildren().clear();
                         _drawGame.update(root,_model);*/
                     }

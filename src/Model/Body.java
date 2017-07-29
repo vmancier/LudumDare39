@@ -21,11 +21,15 @@ public class Body {
         pos_y = posY;
         Image image = new Image("/resources/robot.png", true);
         _observer = observer;
+
+        setImage(image);
+        setPos_x(pos_x);
+        setPos_y(pos_y);
     }
 
     public void setPosition(int posX, int posY) {
-        pos_x = posX;
-        pos_y = posY;
+        setPos_x(posX);
+        setPos_y(posY);
     }
 
     public boolean moveUp() {
@@ -61,14 +65,14 @@ public class Body {
         return _imageView;
     }
 
-    public void setPos_x(int pos_x) {
+    private void setPos_x(int pos_x) {
         this.pos_x = pos_x;
-        _imageView.setX(pos_x * Entities.TILE_SIZE);
+        _imageView.setX(pos_x * Entities.TILE_SIZE - 16); // pixels
     }
 
-    public void setPos_y(int pos_y) {
+    private void setPos_y(int pos_y) {
         this.pos_y = pos_y;
-        _imageView.setY(pos_y * Entities.TILE_SIZE);
+        _imageView.setY((pos_y - 1) * Entities.TILE_SIZE); // pixels
     }
 
     public int getPos_y() {
