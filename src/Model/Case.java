@@ -75,6 +75,14 @@ public class Case {
     public void set_surbrillance(boolean _surbrillance) {
         this._surbrillance = _surbrillance;
     }
+
+    public int getPos_x() {
+        return pos_x;
+    }
+
+    public int getPos_y() {
+        return pos_y;
+    }
 }
 
 

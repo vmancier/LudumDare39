@@ -4,8 +4,6 @@ package Model.Actions;
 import Model.ActionQueue;
 import Model.Body;
 
-import java.util.Queue;
-
 enum Directions {up, down, right, left}
 
 public class Movement implements Action {
@@ -14,6 +12,10 @@ public class Movement implements Action {
     private Directions direction;
     private Body body;
 
+    public Movement(MoveTo moveTo, Directions direction) {
+        this.moveTo=moveTo;
+        this.direction=direction;
+    }
 
 //    @TODO si interruption, remplacer par un MoveTo
 
