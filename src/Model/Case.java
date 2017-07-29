@@ -16,15 +16,15 @@ public class Case {
     private Image _image;
     private ImageView _imageView;
 
-    public Case(GameModel.Observer observer,Image img) {
+    public Case(GameModel.Observer observer, Image img) {
         _observer = observer;
-        _image=img;
+        _image = img;
         _imageView = new ImageView(_image);
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
             set_free(false);
-            System.out.println("x : " +pos_x+" y : "+ pos_y);
+            System.out.println("x : " + pos_x + " y : " + pos_y);
         });
     }
 
@@ -32,13 +32,13 @@ public class Case {
         return _imageView;
     }
 
-    public void setPosition(int pix_x, int pix_y){
+    public void setPosition(int pix_x, int pix_y) {
         _imageView.setX(pix_x);
         _imageView.setY(pix_y);
     }
 
-    public void setImage(Image img){
-        _image=img;
+    public void setImage(Image img) {
+        _image = img;
         _imageView = new ImageView(img);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
@@ -59,10 +59,9 @@ public class Case {
 
     public void set_free(boolean _free) {
         this._free = _free;
-        if (this.is_free()){
+        if (this.is_free()) {
             this.setImage(new Image("/resources/base.jpg", true));
-        }
-        else{
+        } else {
             this.setImage(new Image("/resources/hole.jpg", true));
         }
 //        @TODO actualiser graphe

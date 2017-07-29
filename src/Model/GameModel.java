@@ -7,10 +7,16 @@ public class GameModel {
 
     private Map map;
 
+    private Player _player;
 
     public GameModel() {
         Observer observer = new Observer();
-        map=new Map(observer);
+        map = new Map(observer);
+        _player = new Player(0, 0, CharacterTypes.Player, observer);
+    }
+
+    public Player get_player() {
+        return _player;
     }
 
     public class Observer {
@@ -22,7 +28,7 @@ public class GameModel {
             updateCaseClicked(cell);
         }
 
-        public void playerClicked(Player player){
+        public void playerClicked(Player player) {
             updatePlayerClicked(player);
         }
 

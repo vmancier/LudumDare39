@@ -13,8 +13,8 @@ public class Player extends Body {
     private Image _image;
     private ImageView _imageView;
 
-    public Player(int posX, int posY, CharacterTypes character) {
-        super(posX, posY, character);
+    public Player(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
+        super(posX, posY, character, observer);
         setImage(new Image("/resources/robot.png", true));
     }
 
