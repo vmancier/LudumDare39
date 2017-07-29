@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.time.LocalTime;
 
 
@@ -42,8 +43,9 @@ public class Main extends Application {
 
     public void drawMenu(Stage primaryStage, Pane root){
         Button play = new Button();
-        play.setTranslateX(200);
-        play.setTranslateY(0);
+        play.setTranslateX(0);
+        play.setTranslateY(Entities.WINDOW_HEIGHT * 0.2);
+        play.setPrefSize(Entities.WINDOW_WIDTH, 60);
         play.setText("Play");
         play.setOnMousePressed(new EventHandler<MouseEvent>(){
 
@@ -83,8 +85,9 @@ public class Main extends Application {
         });
 
         Button settings = new Button();
-        settings.setTranslateX(200);
-        settings.setTranslateY(350);
+        settings.setTranslateX(0);
+        settings.setTranslateY(Entities.WINDOW_HEIGHT * 0.4);
+        settings.setPrefSize(Entities.WINDOW_WIDTH, 60);
         settings.setText("Settings");
         settings.setOnMousePressed(new EventHandler<MouseEvent>(){
 
@@ -96,8 +99,9 @@ public class Main extends Application {
         });
 
         Button quit = new Button();
-        quit.setTranslateX(200);
-        quit.setTranslateY(450);
+        quit.setTranslateX(0);
+        quit.setTranslateY(Entities.WINDOW_HEIGHT * 0.6);
+        quit.setPrefSize(Entities.WINDOW_WIDTH, 60);
         quit.setText("Quit");
         quit.setOnMousePressed(new EventHandler<MouseEvent>(){
 
