@@ -1,5 +1,6 @@
 package Model;
 
+import Application.Case;
 import javafx.scene.image.Image;
 
 enum CharacterTypes {Player};
