@@ -1,6 +1,7 @@
 package Application;
 
 
+import Model.Case;
 import Model.GameModel;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -21,10 +22,11 @@ public class Main extends Application {
     private static GameModel _model;
     private static DrawGame _drawGame;
     private static long _time;
+    private static Pane root = new Pane();
 
     public static void main(String args[]) {
         _drawGame = new DrawGame();
-        _model = new GameModel(_drawGame);
+        _model = new GameModel();
         _time = System.currentTimeMillis();
         launch(args);
     }
@@ -32,8 +34,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(Entities.GAME_NAME);
-        Pane root = new Pane();
-
         drawMenu(primaryStage, root);
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,Entities.WINDOW_WIDTH ,Entities.WINDOW_HEIGHT ));
@@ -49,26 +49,30 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
+
                 root.getChildren().clear();
                 //double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
                 //_time = System.currentTimeMillis();
+
+                root.getChildren().clear();
+                _drawGame.update(_model);
 
                 final long startNanoTime = System.nanoTime();
                 new AnimationTimer()
                 {
                     public void handle(long currentNanoTime)
                     {
-                        root.getChildren().clear();
 
-                        try{
+                        /*try{
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                        System.out.println(t);
-                        _drawGame.update(root,_model);
+                        //System.out.println(t);
+                        /*root.getChildren().clear();
+                        _drawGame.update(root,_model);*/
                     }
                 }.start();
 
@@ -119,5 +123,13 @@ public class Main extends Application {
 
     public void drawSubMenu(Stage primaryStage, Pane root){
 
+    }
+
+    public static Pane getRoot() {
+        return root;
+    }
+
+    public static DrawGame get_drawGame() {
+        return _drawGame;
     }
 }

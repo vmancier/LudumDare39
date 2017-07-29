@@ -26,14 +26,10 @@ public class DrawGame {
 
     }
 
-    public void update(Pane root, GameModel gameModel) {
-        root.getChildren().addAll(background);
-        /*
-        if(rnd.nextInt()%2==0){
-            drawMap(gameModel.getMap(), root);
-        }
-        */
-        drawMap(gameModel.getMap(), root);
+    public void update(GameModel gameModel) {
+        Main.getRoot().getChildren().clear();
+        Main.getRoot().getChildren().add(background);
+        drawMap(gameModel.getMap(), Main.getRoot());
     }
 
     private static void drawMap(Map map, Pane root) {

@@ -38,10 +38,9 @@ public class Case {
     }
 
     public void setImage(Image img){
-        _imageView = new ImageView(_image);
-
+        _image=img;
+        _imageView = new ImageView(img);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
-            System.out.println("Ok");
             _observer.caseClicked(this);
         });
     }
