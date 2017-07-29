@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.image.Image;
+
 enum CharacterTypes {Player};
 
 public class GameModel {
@@ -16,7 +18,7 @@ public class GameModel {
 
         }
 
-        public void caseClicked(Case cell){
+        public void caseClicked(Case cell) {
             updateCaseClicked(cell);
         }
     }
@@ -34,7 +36,7 @@ public class GameModel {
     }
 
     private static void updateCaseClicked(Case cell) {
-
+        cell.setImage(new Image("/resources/hole.jpg", true));
     }
 }
 
