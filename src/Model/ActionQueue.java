@@ -28,4 +28,9 @@ public class ActionQueue {
     public void clearQueue() {
         Queue.clear();
     }
+
+    public void executeNext() {
+        this.getFirst().execute();
+        this.removeFirst();
+    }
 }
