@@ -37,9 +37,8 @@ public class Body {
         pos_y -= 1;
     }
 
-
-    public ImageView get_imageView() {
-        return _imageView;
+    public int getPos_x() {
+        return pos_x;
     }
 
     public void setImage(Image img) {
@@ -50,6 +49,19 @@ public class Body {
         });
     }
 
+    public ImageView get_imageView() {
+        return _imageView;
+    }
 
+    public void setPos_x(int pos_x) {
+        this.pos_x = pos_x;
+    }
 
+    public int getPos_y() {
+        return pos_y;
+    }
+
+    public void setPos_y(int pos_y) {
+        this.pos_y = pos_y;
+    }
 }
