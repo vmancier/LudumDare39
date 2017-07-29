@@ -1,13 +1,27 @@
 package Model;
 
+import Application.Case;
+
 public class GameModel {
 
-    Map map=new Map();
+    private Map map = new Map();
 
-    public GameModel(){
+
+    public GameModel() {
+        Observer observer = new Observer();
     }
 
-    public void nextStep(double elapsedTime){
+    public class Observer {
+        Observer() {
+
+        }
+
+        public void caseClicked(Case cell){
+            updateCaseClicked(cell);
+        }
+    }
+
+    public void nextStep(double elapsedTime) {
 
     }
 
@@ -18,4 +32,9 @@ public class GameModel {
     public void setMap(Map map) {
         this.map = map;
     }
+
+    private static void updateCaseClicked(Case cell) {
+
+    }
+
 }
