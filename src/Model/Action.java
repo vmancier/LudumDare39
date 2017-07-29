@@ -1,6 +1,9 @@
 package Model;
 
 public class Action {
+    public boolean isMovable(){
+        return false;
+    }
 
-    private void execute(){}
+    public void execute(){}
 }
