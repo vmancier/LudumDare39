@@ -38,3 +38,6 @@ public class GameModel {
     private static void updateCaseClicked(Case cell) {
 
     }
+}
+
+
