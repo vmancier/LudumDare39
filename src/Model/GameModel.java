@@ -6,11 +6,12 @@ enum CharacterTypes {Player};
 
 public class GameModel {
 
-    private Map map = new Map();
+    private Map map;
 
 
     public GameModel() {
         Observer observer = new Observer();
+        map=new Map(observer);
     }
 
     public class Observer {
