@@ -18,7 +18,9 @@ import static Application.Entities.TILE_SIZE;
 public class DrawGame {
 
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
-    Random rnd = new Random(2);
+    static Image img_surbrillance = new Image("resources/surbrillance.png", true);
+    static ImageView surbrillance;
+
     public DrawGame() {
 
     }
@@ -36,6 +38,12 @@ public class DrawGame {
             for (int j = 0; j < TILE_PER_WIDTH; j++) {
                 map.getCase(i, j).setPosition(i * TILE_SIZE, j * TILE_SIZE);
                 root.getChildren().add(map.getCase(i, j).get_imageView());
+                if (map.getCase(i, j).is_surbrillance()){
+                    surbrillance = new ImageView(img_surbrillance);
+                    surbrillance.setX(i * TILE_SIZE);
+                    surbrillance.setY(j * TILE_SIZE);
+                    root.getChildren().add(surbrillance);
+                }
             }
         }
     }

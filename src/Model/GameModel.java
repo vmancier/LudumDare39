@@ -9,7 +9,6 @@ public class GameModel {
 
     private Map map;
 
-
     public GameModel() {
         Observer observer = new Observer();
         map=new Map(observer);
@@ -39,7 +38,7 @@ public class GameModel {
 
     private void updateCaseClicked(Case cell) {
         System.out.println("UpdateCase Ok");
-        cell.set_free(false);
+        cell.set_surbrillance(true);
         Main.get_drawGame().update(this);
     }
 }

@@ -11,6 +11,7 @@ public class Case {
     private int pos_x;
     private int pos_y;
     private boolean _free;
+    private boolean _surbrillance;
     private Type _type;
     private GameModel.Observer _observer;
     private Image _image;
@@ -23,7 +24,6 @@ public class Case {
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
-            set_free(false);
             System.out.println("x : " +pos_x+" y : "+ pos_y);
         });
     }
@@ -66,6 +66,14 @@ public class Case {
             this.setImage(new Image("/resources/hole.jpg", true));
         }
 //        @TODO actualiser graphe
+    }
+
+    public boolean is_surbrillance() {
+        return _surbrillance;
+    }
+
+    public void set_surbrillance(boolean _surbrillance) {
+        this._surbrillance = _surbrillance;
     }
 }
 
