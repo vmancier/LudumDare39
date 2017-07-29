@@ -25,6 +25,7 @@ public class Case {
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this);
+            System.out.println("x : " +_x+" y : "+_y);
         });
     }
 
@@ -41,8 +42,17 @@ public class Case {
         _imageView = new ImageView(_image);
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
+            System.out.println("Ok");
             _observer.caseClicked(this);
         });
+    }
+
+    public void set_x(int _x) {
+        this._x = _x;
+    }
+
+    public void set_y(int _y) {
+        this._y = _y;
     }
 }
 

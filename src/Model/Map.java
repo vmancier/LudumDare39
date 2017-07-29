@@ -19,6 +19,8 @@ public class Map {
         for (int i = 0; i < TILE_PER_HEIGHT; i++) {
             for (int j = 0; j < TILE_PER_WIDTH; j++) {
                 floor[i][j]=new Case(observer,image);
+                floor[i][j].set_x(i);
+                floor[i][j].set_y(j);
             }
         }
     }
