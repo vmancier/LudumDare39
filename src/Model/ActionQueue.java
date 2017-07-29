@@ -9,7 +9,7 @@ public class ActionQueue {
         Queue.add(0,action);
     }
     private void addLast(Action action){
-        Queue.add(action)
+        Queue.add(action);
     }
     private void removeFirst(){
         Queue.remove(0);
