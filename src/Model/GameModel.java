@@ -2,6 +2,8 @@ package Model;
 
 import Application.Case;
 
+enum CharacterTypes {Player};
+
 public class GameModel {
 
     private Map map = new Map();
@@ -36,5 +38,3 @@ public class GameModel {
     private static void updateCaseClicked(Case cell) {
 
     }
-
-}
