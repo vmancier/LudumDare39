@@ -11,5 +11,5 @@ public class Entities {
     public static final int WINDOW_HEIGHT = TILE_SIZE*TILE_PER_HEIGHT;    //default window's height
     public static final int WINDOW_WIDTH = TILE_SIZE*TILE_PER_WIDTH;     //default window's width
 
-
 }
+
