@@ -6,7 +6,7 @@ import java.lang.Character;
 import java.util.ArrayList;
 
 public class ActionQueue {
-    Character character;
+    Body character;
     private ArrayList<Action> Queue;
 
     public void addFirst(Action action) {
