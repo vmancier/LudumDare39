@@ -15,6 +15,8 @@ public class Movement implements Action {
     public Movement(MoveTo moveTo, Directions direction) {
         this.moveTo=moveTo;
         this.direction=direction;
+        this.queue=moveTo.getQueue();
+        this.body=queue.getCharacter();
     }
 
 //    @TODO si interruption, remplacer par un MoveTo

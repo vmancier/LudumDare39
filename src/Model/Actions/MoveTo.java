@@ -11,10 +11,10 @@ public class MoveTo implements Action {
     private Case target;
     private Body subject;
 
-    public MoveTo(ActionQueue queue, Case target, Body subject) {
+    public MoveTo(ActionQueue queue, Case target) {
         this.queue = queue;
         this.target = target;
-        this.subject = subject;
+        this.subject = queue.getCharacter();
     }
 
     @Override
@@ -43,5 +43,8 @@ public class MoveTo implements Action {
         }
     }
 
+    public ActionQueue getQueue() {
+        return queue;
+    }
 }
 

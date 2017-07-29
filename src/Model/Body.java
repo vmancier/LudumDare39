@@ -1,18 +1,24 @@
 package Model;
 
+import Application.Entities;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class Body {
 
     private int pos_x;
     private int pos_y;
-    Image image;
+    private GameModel.Observer _observer;
+    private Image _image;
+    private ImageView _imageView;
 
-    public Body(int posX, int posY, CharacterTypes characcter){
-        pos_x=posX;
-        pos_y=posY;
+    public Body(int posX, int posY, CharacterTypes characcter, GameModel.Observer observer) {
+        pos_x = posX;
+        pos_y = posY;
         Image image = new Image("/resources/robot.png", true);
+        _observer = observer;
     }
 
     public void setPosition(int posX, int posY) {
@@ -20,24 +26,55 @@ public class Body {
         pos_y = posY;
     }
 
-    public void moveUp(){}
-    public void moveDown(){}
-    public void moveRight(){}
-    public void moveLeft(){}
+    public boolean moveUp() {
+        setPos_y(getPos_y() + 1);
+        return true;
+    }
 
-    public int getPos_x() {
-        return pos_x;
+    public boolean moveDown() {
+        setPos_y(getPos_y() - 1);
+        return true;
+    }
+
+    public boolean moveRight() {
+        setPos_x(getPos_x() + 1);
+        System.out.println("Trying to move");
+        return true;
+    }
+
+    public boolean moveLeft() {
+        setPos_x(getPos_x() - 1);
+        return true;
+    }
+
+    public void setImage(Image img) {
+        _image = img;
+        _imageView = new ImageView(img);
+        _imageView.setOnMouseClicked((MouseEvent e) -> {
+            _observer.bodyClicked(this);
+        });
+    }
+
+    public ImageView get_imageView() {
+        return _imageView;
     }
 
     public void setPos_x(int pos_x) {
         this.pos_x = pos_x;
+        _imageView.setX(pos_x * Entities.TILE_SIZE);
+    }
+
+    public void setPos_y(int pos_y) {
+        this.pos_y = pos_y;
+        _imageView.setY(pos_y * Entities.TILE_SIZE);
     }
 
     public int getPos_y() {
         return pos_y;
     }
 
-    public void setPos_y(int pos_y) {
-        this.pos_y = pos_y;
+    public int getPos_x() {
+        return pos_x;
     }
+
 }
