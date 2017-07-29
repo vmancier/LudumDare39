@@ -10,7 +10,21 @@ import static Application.Entities.TILE_SIZE;
 
 public class Map {
 
-    public Map() {
+    Case[][] floor;
+
+    public Map(GameModel.Observer observer) {
+
+        Image image = new Image("/resources/base.jpg", true);
+        floor = new Case[TILE_PER_HEIGHT][TILE_PER_WIDTH];
+        for (int i = 0; i < TILE_PER_HEIGHT; i++) {
+            for (int j = 0; j < TILE_PER_WIDTH; j++) {
+                floor[i][j]=new Case(observer,image);
+            }
+        }
+    }
+
+    public Case getCase(int i, int j){
+        return floor[i][j];
     }
 
 }
