@@ -27,6 +27,7 @@ public class GameModel {
         }
 
         public void bodyClicked(Body body) {
+            body.moveRight();
             updateBodyClicked(body);
         }
     }
