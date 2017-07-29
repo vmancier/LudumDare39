@@ -6,12 +6,11 @@ import java.lang.Character;
 import java.util.ArrayList;
 
 public class ActionQueue {
-    Body character;
+    Body body;
     private ArrayList<Action> Queue;
 
-
-    public ActionQueue(Body character) {
-        this.character = character;
+    public ActionQueue(Body body) {
+        this.body = body;
     }
 
     public void addFirst(Action action) {
@@ -35,13 +34,14 @@ public class ActionQueue {
     }
 
     public void executeNext() {
-        if (!Queue.isEmpty()){
-            this.getFirst().execute();
+        if (!Queue.isEmpty()) {
+            Action action = this.getFirst();
             this.removeFirst();
+            action.execute();
         }
     }
 
-    public Body getCharacter() {
-        return character;
+    public Body getBody() {
+        return body;
     }
 }

@@ -14,7 +14,7 @@ public class MoveTo implements Action {
     public MoveTo(ActionQueue queue, Case target) {
         this.queue = queue;
         this.target = target;
-        this.subject = queue.getCharacter();
+        this.subject = queue.getBody();
     }
 
     @Override

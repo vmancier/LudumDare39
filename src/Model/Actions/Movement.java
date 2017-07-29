@@ -13,33 +13,42 @@ public class Movement implements Action {
     private Body body;
 
     public Movement(MoveTo moveTo, Directions direction) {
-        this.moveTo=moveTo;
-        this.direction=direction;
-        this.queue=moveTo.getQueue();
-        this.body=queue.getCharacter();
+        this.moveTo = moveTo;
+        this.direction = direction;
+        this.queue = moveTo.getQueue();
+        this.body = queue.getBody();
     }
 
 //    @TODO si interruption, remplacer par un MoveTo
 
     @Override
     public void execute() {
+        boolean success = true;
         switch (direction) {
             case up: {
-                body.moveUp();
+                success = body.moveUp();
                 break;
             }
             case down: {
-                body.moveDown();
+                success = body.moveDown();
                 break;
             }
             case right: {
-                body.moveRight();
+                success = body.moveRight();
                 break;
             }
             case left: {
-                body.moveLeft();
+                success = body.moveLeft();
                 break;
             }
         }
+        if (!success) {
+            this.interrupt();
+        }
+    }
+
+    private void interrupt() {
+        queue.clearQueue();
+//        queue.addFirst(moveTo);
     }
 }
