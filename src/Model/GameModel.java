@@ -2,21 +2,20 @@ package Model;
 
 public class GameModel {
 
-    private int _number;
+    Map map=new Map();
 
     public GameModel(){
-        _number = 0;
-    }
-
-    public int getNumber(){
-        return _number;
-    }
-
-    public void setNumber(){
-        _number++;
     }
 
     public void nextStep(double elapsedTime){
 
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 }

@@ -19,11 +19,13 @@ enum GameState { Menu, Play, Settings, Lose };
 
 public class Main extends Application {
     private static GameModel _model;
+    private static DrawGame _drawGame;
     private static GameState _gs;
     private static long _time;
 
     public static void main(String args[]) {
         _model = new GameModel();
+        _drawGame = new DrawGame();
         _gs = GameState.Play;
         _time = System.currentTimeMillis();
         launch(args);
@@ -33,7 +35,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle(Entities.GAME_NAME);
         Pane root = new Pane();
-        DrawGame drawGame = new DrawGame();
 
         //Event selon l'etat du jeu
         switch (_gs)
@@ -47,7 +48,7 @@ public class Main extends Application {
                 _time = System.currentTimeMillis();
 
                 _model.nextStep(elapsedTime);
-                drawGame.update(primaryStage,root);
+                _drawGame.update(root,_model);
                 break;
             case Settings:
                 drawSettings(primaryStage, root);
@@ -78,8 +79,6 @@ public class Main extends Application {
             @Override
             public void handle(MouseEvent event) {
 
-                System.out.println(_model.getNumber());
-                _model.setNumber();
             }
 
         });
@@ -93,8 +92,6 @@ public class Main extends Application {
             @Override
             public void handle(MouseEvent event) {
 
-                System.out.println(_model.getNumber());
-                _model.setNumber();
             }
 
         });
