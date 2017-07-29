@@ -21,7 +21,7 @@ public class DrawGame {
 
     public void update(Pane root, GameModel gameModel){
         root.getChildren().addAll(background);
-        gameModel.getMap().drawMap(root);
+        DrawMap.draw(gameModel.getMap(),root);
     }
 
 

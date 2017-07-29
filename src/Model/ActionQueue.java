@@ -3,24 +3,28 @@ package Model;
 import java.util.ArrayList;
 
 public class ActionQueue {
-    ArrayList<Action> Queue;
+    private ArrayList<Action> Queue;
 
-    private void addFirst(Action action){
+    public void addFirst(Action action){
         Queue.add(0,action);
     }
-    private void addLast(Action action){
-        Queue.add(action)
+    public void addLast(Action action){
+        Queue.add(action);
     }
-    private void removeFirst(){
+    public void removeFirst(){
         Queue.remove(0);
     }
-    private Action getFirst(){
+    public Action getFirst(){
         return Queue.get(0);
     }
-    private void removeAllMovable(){
-
+    public void removeAllMovable(){
+        for (Action a:Queue){
+            if(a.isMovable()){
+                Queue.remove(a);
+            }
+        }
     }
-    private void clearQueue(){
+    public void clearQueue(){
         Queue.clear();
     }
 }
