@@ -24,7 +24,7 @@ public class Main extends Application {
 
     public static void main(String args[]) {
         _model = new GameModel();
-        _gs = GameState.Menu;
+        _gs = GameState.Play;
         _time = System.currentTimeMillis();
         launch(args);
     }
@@ -33,6 +33,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle(Entities.GAME_NAME);
         Pane root = new Pane();
+        DrawGame drawGame = new DrawGame();
 
         //Event selon l'etat du jeu
         switch (_gs)
@@ -46,7 +47,7 @@ public class Main extends Application {
                 _time = System.currentTimeMillis();
 
                 _model.nextStep(elapsedTime);
-                drawGame(primaryStage, root);
+                drawGame.update(primaryStage,root);
                 break;
             case Settings:
                 drawSettings(primaryStage, root);
@@ -114,10 +115,6 @@ public class Main extends Application {
         root.getChildren().add(play);
         root.getChildren().add(settings);
         root.getChildren().add(quit);
-    }
-
-    public void drawGame(Stage primaryStage, Pane root){
-
     }
 
     public void drawLose(Stage primaryStage, Pane root){
