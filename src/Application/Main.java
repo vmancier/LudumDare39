@@ -15,18 +15,15 @@ import javafx.stage.Stage;
 
 import java.time.LocalTime;
 
-enum GameState { Menu, Play, Settings, Lose };
 
 public class Main extends Application {
     private static GameModel _model;
     private static DrawGame _drawGame;
-    private static GameState _gs;
     private static long _time;
 
     public static void main(String args[]) {
         _model = new GameModel();
         _drawGame = new DrawGame();
-        _gs = GameState.Play;
         _time = System.currentTimeMillis();
         launch(args);
     }
@@ -36,50 +33,31 @@ public class Main extends Application {
         primaryStage.setTitle(Entities.GAME_NAME);
         Pane root = new Pane();
 
+        drawMenu(primaryStage, root);
         //Event selon l'etat du jeu
-        switch (_gs)
-        {
-            case Menu :
-                drawMenu(primaryStage, root);
-                break;
-            case Play:
-                //Temps écoulé depuis la dernière exécution
-                double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
-                _time = System.currentTimeMillis();
 
-                _model.nextStep(elapsedTime);
-                _drawGame.update(root,_model);
-                break;
-            case Settings:
-                drawSettings(primaryStage, root);
-                break;
-            case Lose:
-                drawLose(primaryStage, root);
-                break;
-            default:
-                //Problems
-                break;
-        }
-        
+        drawMenu(primaryStage, root);
+
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,Entities.WINDOW_WIDTH ,Entities.WINDOW_HEIGHT ));
         primaryStage.show();
     }
 
     public void drawMenu(Stage primaryStage, Pane root){
-        //Assigne une image à un bouton
-        //Image imageDecline = new Image(getClass().getResourceAsStream("not.png"));
-        //button5.setGraphic(new ImageView(imageDecline));
-
         Button play = new Button();
         play.setTranslateX(200);
         play.setTranslateY(0);
-        play.setText("Say 'Hello World'");
+        play.setText("Play");
         play.setOnMousePressed(new EventHandler<MouseEvent>(){
 
             @Override
             public void handle(MouseEvent event) {
+                root.getChildren().clear();
+                double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
+                _time = System.currentTimeMillis();
 
+                _model.nextStep(elapsedTime);
+                _drawGame.update(root,_model);
             }
 
         });
@@ -92,7 +70,7 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-
+                drawSettings(primaryStage, root);
             }
 
         });
