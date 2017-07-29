@@ -17,13 +17,14 @@ public class Case {
     private Image _image;
     private ImageView _imageView;
 
-    public Case(GameModel.Observer observer,Image img) {
+    public Case(GameModel.Observer observer, Image img) {
         _observer = observer;
-        _image=img;
+        _image = img;
         _imageView = new ImageView(_image);
-    }
 
-    _imageView.setOnMouseClicked((MouseEvent e) -> {
-        System.out.println("Clicked!"); // change functionality
-    });
+        _imageView.setOnMouseClicked(event -> {
+            System.out.println("Clicked!"); // change functionality
+        });
+    }
+}
 

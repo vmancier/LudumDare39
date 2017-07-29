@@ -48,7 +48,7 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-                root.getChildren().clear();
+                //root.getChildren().clear();
                 double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
                 _time = System.currentTimeMillis();
 

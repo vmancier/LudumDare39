@@ -37,7 +37,7 @@ public class GameModel {
     }
 
     private static void updateCaseClicked(Case cell) {
-        cell.setImage(new Image("/resources/hole.jpg", true));
+        //cell.setImage(new Image("/resources/hole.jpg", true));
     }
 }
 
