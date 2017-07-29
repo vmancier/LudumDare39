@@ -1,13 +1,14 @@
 package Model.Actions;
 
+import Model.ActionQueue;
 import Model.Case;
 
 import java.util.Queue;
 
 public class MoveTo implements Action {
-    Queue queue;
+    ActionQueue queue;
     Case target;
-    Character character;
+    Character subject;
 
     @Override
     public void execute() {

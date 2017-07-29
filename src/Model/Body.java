@@ -3,13 +3,13 @@ package Model;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
-public class Character {
+public class Body {
 
     private int pos_x;
     private int pos_y;
     Image image;
 
-    public Character(int posX, int posY, CharacterTypes characcter){
+    public Body(int posX, int posY, CharacterTypes characcter){
         pos_x=posX;
         pos_y=posY;
         Image image = new Image("/resources/robot.png", true);
@@ -19,5 +19,13 @@ public class Character {
         pos_x = posX;
         pos_y = posY;
     }
+
+    public void moveUp(){}
+    public void moveDown(){}
+    public void moveRight(){}
+    public void moveLeft(){}
+
+
+
 
 }
