@@ -35,6 +35,7 @@ public class DrawGame {
                 root.getChildren().add(map.getCase(i,j).get_imageView());
             }
         }
+        //System.out.println("test");
     }
 
     private static void drawCase(int x,int y,Case cell, Pane root){

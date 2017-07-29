@@ -2,6 +2,7 @@ package Application;
 
 
 import Model.GameModel;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,12 +49,22 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-                //root.getChildren().clear();
-                double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
-                _time = System.currentTimeMillis();
-
-                _model.nextStep(elapsedTime);
-                _drawGame.update(root,_model);
+                root.getChildren().clear();
+                //double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
+                //_time = System.currentTimeMillis();
+                final long startNanoTime = System.nanoTime();
+                new AnimationTimer()
+                {
+                    public void handle(long currentNanoTime)
+                    {
+                        root.getChildren().clear();
+                        double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+                        //System.out.println(t);
+                        _drawGame.update(root,_model);
+                    }
+                }.start();
+                //_model.nextStep(elapsedTime);
+                //_drawGame.update(root,_model);
             }
 
         });
