@@ -11,7 +11,7 @@ public class Case {
     private int pos_x;
     private int pos_y;
     private boolean _free;
-    private boolean _surbrillance;
+    private int _surbrillance = 0;
     private Type _type;
     private GameModel.Observer _observer;
     private Image _image;
@@ -23,8 +23,8 @@ public class Case {
         _imageView = new ImageView(_image);
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
-            _observer.caseClicked(this);
-            System.out.println("x : " +pos_x+" y : "+ pos_y);
+            System.out.println(e.getButton());
+            _observer.caseClicked(this, e);
         });
     }
 
@@ -41,7 +41,7 @@ public class Case {
         _image = img;
         _imageView = new ImageView(img);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
-            _observer.caseClicked(this);
+            _observer.caseClicked(this, e);
         });
     }
 
@@ -68,11 +68,15 @@ public class Case {
     }
 
     public boolean is_surbrillance() {
-        return _surbrillance;
+        return (_surbrillance > 0);
     }
 
-    public void set_surbrillance(boolean _surbrillance) {
-        this._surbrillance = _surbrillance;
+    public void add_surbrillance() {
+        this._surbrillance += 1;
+    }
+
+    public void remove_surbrillance() {
+        this._surbrillance = Math.max(0, _surbrillance - 1);
     }
 
     public int getPos_x() {

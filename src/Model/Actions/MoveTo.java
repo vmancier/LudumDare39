@@ -35,6 +35,13 @@ public class MoveTo implements Action {
             x_diff *= -1;
             hori_direct = left;
         }
+        if (x_diff==0 && y_diff==0){
+            target.remove_surbrillance();
+        }
+        else {
+            queue.addFirst(this);
+        }
+
         for (int i = 0; i < x_diff; i++) {
             queue.addFirst(new Movement(this, hori_direct));
         }
@@ -42,6 +49,11 @@ public class MoveTo implements Action {
             queue.addFirst(new Movement(this, vert_direct));
         }
         queue.executeNext();
+    }
+
+    @Override
+    public void end() {
+        target.remove_surbrillance();
     }
 
     public ActionQueue getQueue() {

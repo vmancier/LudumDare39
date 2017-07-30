@@ -1,7 +1,6 @@
 package Model.Actions;
 
 
-import Application.Main;
 import Model.ActionQueue;
 import Model.Body;
 
@@ -44,10 +43,15 @@ public class Movement implements Action {
         if (!success) {
             this.interrupt();
         }
-        if (moveTo.getTarget().getPos_x() == body.getPos_x()
-                && moveTo.getTarget().getPos_y() == body.getPos_y()) {
-            moveTo.getTarget().set_surbrillance(false);
-        }
+//        if (moveTo.getTarget().getPos_x() == body.getPos_x()
+//                && moveTo.getTarget().getPos_y() == body.getPos_y()) {
+//            moveTo.getTarget().remove_surbrillance();
+//        }
+    }
+
+    @Override
+    public void end() {
+
     }
 
     private void interrupt() {

@@ -5,4 +5,9 @@ public class FeuxArtifice implements Action{
     public void execute() {
 //        @TODO faire des etincelles
     }
+
+    @Override
+    public void end() {
+
+    }
 }

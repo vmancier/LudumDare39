@@ -3,6 +3,8 @@ package Model;
 import Application.DrawGame;
 import Application.Main;
 import Model.Actions.MoveTo;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 public class GameModel {
 
@@ -25,8 +27,8 @@ public class GameModel {
 
         }
 
-        public void caseClicked(Case cell) {
-            updateCaseClicked(cell);
+        public void caseClicked(Case cell,MouseEvent e) {
+            updateCaseClicked(cell,e);
         }
 
         public void playerClicked(Player player) {
@@ -51,11 +53,12 @@ public class GameModel {
         this.map = map;
     }
 
-    private void updateCaseClicked(Case cell) {
-        System.out.println("UpdateCase Ok");
-        cell.set_surbrillance(true);
+    private void updateCaseClicked(Case cell,MouseEvent e) {
+        if (e.getButton()!= MouseButton.PRIMARY){
+            _player.getActionQueue().clearQueue();
+        }
+        cell.add_surbrillance();
         _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
-        _player.getActionQueue().executeNext();
         Main.get_drawGame().update(this);
     }
 

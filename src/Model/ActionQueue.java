@@ -23,16 +23,22 @@ public class ActionQueue {
         Queue.add(action);
     }
 
-    public void removeFirst() {
-        Queue.remove(0);
-    }
+    public void removeFirst() { Queue.remove(0); }
 
     public Action getFirst() {
         return Queue.get(0);
     }
 
     public void clearQueue() {
+        while (Queue.size()!=0){
+            this.endFirst();
+        }
         Queue.clear();
+    }
+
+    public void endFirst(){
+        this.getFirst().end();
+        this.removeFirst();
     }
 
     public void executeNext() {
