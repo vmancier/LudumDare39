@@ -20,13 +20,14 @@ public class DrawGame {
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
     static Image img_surbrillance = new Image("resources/surbrillance.png", true);
     static ImageView surbrillance;
+    static Image img_menu = new Image("resources/menutest.jpg",true);
 
     public DrawGame() {
 
     }
 
     public void update(GameModel gameModel) {
-        Pane pane=new Pane();
+        Pane pane = new Pane();
         pane.getChildren().add(background);
         drawMap(gameModel.getMap(), pane);
         drawBody(gameModel.get_player(), pane);
@@ -35,11 +36,17 @@ public class DrawGame {
     }
 
     private static void drawMap(Map map, Pane root) {
+//        Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT);
+//        menu.setFill(Color.MIDNIGHTBLUE);
+        ImageView menu=new ImageView(img_menu);
+        menu.setX(TILE_SIZE * TILE_PER_WIDTH);
+        menu.setY(0);
+        root.getChildren().add(menu);
         for (int i = 0; i < TILE_PER_HEIGHT; i++) {
             for (int j = 0; j < TILE_PER_WIDTH; j++) {
                 map.getCase(i, j).setPosition(i * TILE_SIZE, j * TILE_SIZE);
                 root.getChildren().add(map.getCase(i, j).get_imageView());
-                if (map.getCase(i, j).is_surbrillance()){
+                if (map.getCase(i, j).is_surbrillance()) {
                     surbrillance = new ImageView(img_surbrillance);
                     surbrillance.setX(i * TILE_SIZE);
                     surbrillance.setY(j * TILE_SIZE);
