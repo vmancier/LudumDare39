@@ -54,10 +54,6 @@ public class Main extends Application {
             public void handle(MouseEvent event) {
 
                 root.getChildren().clear();
-                //double elapsedTime = (System.currentTimeMillis()-_time)/1000.0;
-                //_time = System.currentTimeMillis();
-
-                root.getChildren().clear();
                 _drawGame.update(_model);
 
                 final long startNanoTime = System.nanoTime();
@@ -69,7 +65,7 @@ public class Main extends Application {
 
                         if (t - last > 0.3 ){
                             last = t;
-                            _model.nextStep(0);
+                            _model.run();
                         }
                         /*root.getChildren().clear();
                         _drawGame.update(root,_model);*/

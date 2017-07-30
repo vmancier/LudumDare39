@@ -23,7 +23,6 @@ public class Case {
         _imageView = new ImageView(_image);
 
         _imageView.setOnMouseClicked((MouseEvent e) -> {
-            System.out.println(e.getButton());
             _observer.caseClicked(this, e);
         });
     }

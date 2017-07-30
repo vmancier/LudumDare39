@@ -6,7 +6,7 @@ import Model.Actions.MoveTo;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-public class GameModel {
+public class GameModel implements Runnable{
 
     private Map map;
 
@@ -40,7 +40,8 @@ public class GameModel {
         }
     }
 
-    public void nextStep(double elapsedTime) {
+    @Override
+    public void run() {
         _player.getActionQueue().executeNext();
         Main.get_drawGame().update(this);
     }
