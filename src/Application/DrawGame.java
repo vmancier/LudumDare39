@@ -18,9 +18,7 @@ import static Application.Entities.TILE_SIZE;
 public class DrawGame {
 
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
-    static Image img_surbrillance = new Image("resources/surbrillance.png", true);
-    static ImageView surbrillance;
-    static Image img_menu = new Image("resources/menutest.jpg",true);
+    static Image img_menu = new Image("resources/menutest.jpg", true);
 
     public DrawGame() {
 
@@ -31,42 +29,43 @@ public class DrawGame {
         pane.getChildren().add(background);
         drawMap(gameModel.getMap(), pane);
         drawBody(gameModel.get_player(), pane);
+        for (Body e : gameModel.getEnemies()) {
+            drawBody(e, pane);
+        }
         Main.getRoot().getChildren().clear();
         Main.getRoot().getChildren().add(pane);
     }
 
     private static void drawMap(Map map, Pane root) {
-//        Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT);
-//        menu.setFill(Color.MIDNIGHTBLUE);
-        ImageView menu=new ImageView(img_menu);
-        menu.setX(TILE_SIZE * TILE_PER_WIDTH);
-        menu.setY(0);
+        Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT-ENERGY_BAR_HEIGHT);
+        menu.setFill(Color.MIDNIGHTBLUE);
+//        ImageView menu = new ImageView(img_menu);
+//        menu.setX(TILE_SIZE * TILE_PER_WIDTH);
+//        menu.setY(0);
         root.getChildren().add(menu);
-        for (int i = 0; i < TILE_PER_HEIGHT; i++) {
-            for (int j = 0; j < TILE_PER_WIDTH; j++) {
-                map.getCase(i, j).setPosition(i * TILE_SIZE, j * TILE_SIZE);
+        Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
+        energy_bar.setFill(Color.GOLD);
+//        ImageView menu = new ImageView(img_menu);
+//        energy_bar.setX(0);
+//        energy_bar.setY(TILE_SIZE * TILE_PER_HEIGHT);
+        root.getChildren().add(energy_bar);
+        for (int i = 0; i < TILE_PER_WIDTH; i++) {
+            for (int j = 0; j < TILE_PER_HEIGHT; j++) {
                 root.getChildren().add(map.getCase(i, j).get_imageView());
-                if (map.getCase(i, j).is_surbrillance()) {
-                    surbrillance = new ImageView(img_surbrillance);
-                    surbrillance.setX(i * TILE_SIZE);
-                    surbrillance.setY(j * TILE_SIZE);
-                    root.getChildren().add(surbrillance);
+                if (map.getCase(i, j).get_surbrillance() > 0) {
+                    root.getChildren().add(map.getCase(i, j).get_imgSurbrillance());
                 }
             }
         }
     }
 
-    private static void drawCase(int pos_x, int pos_y, Case cell, Pane root) {
-
-        cell.setPosition(pos_x, pos_y);
-        root.getChildren().add(cell.get_imageView());
-
+    private static void drawBody(Body body, Pane root) {
+        root.getChildren().add(body.get_imageView());
     }
 
-    private static void drawBody(Body body, Pane root) {
-
-        root.getChildren().add(body.get_imageView());
-
+    public static void updateForeground(Pane root) {
+        root.getChildren().remove(Main.get_model().get_player().get_imageView());
+        root.getChildren().add(Main.get_model().get_player().get_imageView());
     }
 
 }

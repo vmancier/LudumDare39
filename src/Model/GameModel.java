@@ -6,16 +6,22 @@ import Model.Actions.MoveTo;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+
 public class GameModel implements Runnable{
 
     private Map map;
-
+    private ArrayList<Enemy> Enemies;
     private Player _player;
 
     public GameModel() {
         Observer observer = new Observer();
         map = new Map(observer);
         _player = new Player(0, 0, CharacterTypes.Player, observer);
+        Enemies=new ArrayList<Enemy>();
+        for (int k=0;k<5;k++){
+            Enemies.add(new Enemy(k,k,CharacterTypes.Mob,observer));
+        }
     }
 
     public Player get_player() {
@@ -24,7 +30,6 @@ public class GameModel implements Runnable{
 
     public class Observer {
         Observer() {
-
         }
 
         public void caseClicked(Case cell,MouseEvent e) {
@@ -43,7 +48,11 @@ public class GameModel implements Runnable{
     @Override
     public void run() {
         _player.getActionQueue().executeNext();
-        Main.get_drawGame().update(this);
+        for (Body e:Enemies) {
+            e.getActionQueue().executeNext();
+//            @TODO attention à la surbrillance
+        }
+        //Main.get_drawGame().update(this);
     }
 
     public Map getMap() {
@@ -60,17 +69,25 @@ public class GameModel implements Runnable{
         }
         cell.add_surbrillance();
         _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
-        Main.get_drawGame().update(this);
+        //Main.get_drawGame().update(this);
     }
 
     private void updatePlayerClicked(Player player) {
-        System.out.println("UpdatePlayer Ok");
-        Main.get_drawGame().update(this);
+        System.out.println("You clicked on Player");
+
     }
 
     private void updateBodyClicked(Body body) {
-        System.out.println("UpdateBody Ok");
-        Main.get_drawGame().update(this);
+        System.out.println("You clicked on Body");
+        //A modifier si jamais ça plante
+        if (CharacterTypes.Mob.equals(body.getCharacter())){
+            body.getActionQueue().addLast(new MoveTo(body.getActionQueue(),
+                    map.getCase(_player.getPos_x(),_player.getPos_y())));
+        }
+        //Main.get_drawGame().update(this);
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return Enemies;
+    }
 }

@@ -4,7 +4,6 @@ import Application.Entities;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 
 public class Body {
 
@@ -14,15 +13,20 @@ public class Body {
     private GameModel.Observer _observer;
     private Image _image;
     private ImageView _imageView;
+    private CharacterTypes character;
 
-    public Body(int posX, int posY, CharacterTypes characcter, GameModel.Observer observer) {
+    public Body(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         actionQueue = new ActionQueue(this);
+        _observer = observer;
+        this.character=character;
+        if(character==CharacterTypes.Player){
+            setImage(new Image("/resources/robot.png", true));
+        }
+        else if(character == CharacterTypes.Mob){
+            setImage(new Image("/resources/Sprites/mob.png", true));
+        }
         pos_x = posX;
         pos_y = posY;
-        Image image = new Image("/resources/robot.png", true);
-        _observer = observer;
-
-        setImage(image);
         setPos_x(pos_x);
         setPos_y(pos_y);
     }
@@ -84,5 +88,9 @@ public class Body {
 
     public ActionQueue getActionQueue() {
         return actionQueue;
+    }
+
+    public CharacterTypes getCharacter() {
+        return this.character;
     }
 }
