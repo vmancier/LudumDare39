@@ -38,17 +38,17 @@ public class Main extends Application {
         primaryStage.setTitle(Entities.GAME_NAME);
         drawMenu(primaryStage, root);
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root,Entities.WINDOW_WIDTH ,Entities.WINDOW_HEIGHT ));
+        primaryStage.setScene(new Scene(root, Entities.WINDOW_WIDTH, Entities.WINDOW_HEIGHT));
         primaryStage.show();
     }
 
-    public void drawMenu(Stage primaryStage, Pane root){
+    public void drawMenu(Stage primaryStage, Pane root) {
         Button play = new Button();
         play.setTranslateX(0);
         play.setTranslateY(Entities.WINDOW_HEIGHT * 0.2);
         play.setPrefSize(Entities.WINDOW_WIDTH, 60);
         play.setText("Play");
-        play.setOnMousePressed(new EventHandler<MouseEvent>(){
+        play.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
@@ -56,13 +56,11 @@ public class Main extends Application {
                 root.getChildren().clear();
                 _drawGame.update(_model);
                 final long startNanoTime = System.nanoTime();
-                new AnimationTimer()
-                {
-                    public void handle(long currentNanoTime)
-                    {
+                new AnimationTimer() {
+                    public void handle(long currentNanoTime) {
                         double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
-                        if (t - last > 0.3 ){
+                        if (t - last > 0.3) {
                             last = t;
                             _model.run();
                         }
@@ -82,7 +80,7 @@ public class Main extends Application {
         settings.setTranslateY(Entities.WINDOW_HEIGHT * 0.4);
         settings.setPrefSize(Entities.WINDOW_WIDTH, 60);
         settings.setText("Settings");
-        settings.setOnMousePressed(new EventHandler<MouseEvent>(){
+        settings.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
@@ -96,7 +94,7 @@ public class Main extends Application {
         quit.setTranslateY(Entities.WINDOW_HEIGHT * 0.6);
         quit.setPrefSize(Entities.WINDOW_WIDTH, 60);
         quit.setText("Quit");
-        quit.setOnMousePressed(new EventHandler<MouseEvent>(){
+        quit.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
@@ -110,15 +108,15 @@ public class Main extends Application {
         root.getChildren().add(quit);
     }
 
-    public void drawLose(Stage primaryStage, Pane root){
+    public void drawLose(Stage primaryStage, Pane root) {
 
     }
 
-    public void drawSettings(Stage primaryStage, Pane root){
+    public void drawSettings(Stage primaryStage, Pane root) {
 
     }
 
-    public void drawSubMenu(Stage primaryStage, Pane root){
+    public void drawSubMenu(Stage primaryStage, Pane root) {
 
     }
 
