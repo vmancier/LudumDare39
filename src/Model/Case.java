@@ -67,6 +67,14 @@ public class Case {
         }
 //        @TODO actualiser graphe
     }
+
+    public int getPos_x() {
+        return pos_x;
+    }
+
+    public int getPos_y() {
+        return pos_y;
+    }
 }
 
 
