@@ -55,7 +55,6 @@ public class Main extends Application {
 
                 root.getChildren().clear();
                 _drawGame.update(_model);
-
                 final long startNanoTime = System.nanoTime();
                 new AnimationTimer()
                 {
@@ -133,5 +132,9 @@ public class Main extends Application {
 
     public static DrawGame get_drawGame() {
         return _drawGame;
+    }
+
+    public static GameModel get_model() {
+        return _model;
     }
 }

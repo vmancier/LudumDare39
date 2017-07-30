@@ -24,7 +24,6 @@ public class GameModel implements Runnable{
 
     public class Observer {
         Observer() {
-
         }
 
         public void caseClicked(Case cell,MouseEvent e) {
@@ -43,7 +42,7 @@ public class GameModel implements Runnable{
     @Override
     public void run() {
         _player.getActionQueue().executeNext();
-        Main.get_drawGame().update(this);
+        //Main.get_drawGame().update(this);
     }
 
     public Map getMap() {
@@ -60,17 +59,17 @@ public class GameModel implements Runnable{
         }
         cell.add_surbrillance();
         _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
-        Main.get_drawGame().update(this);
+        //Main.get_drawGame().update(this);
     }
 
     private void updatePlayerClicked(Player player) {
         System.out.println("UpdatePlayer Ok");
-        Main.get_drawGame().update(this);
+        //Main.get_drawGame().update(this);
     }
 
     private void updateBodyClicked(Body body) {
         System.out.println("UpdateBody Ok");
-        Main.get_drawGame().update(this);
+        //Main.get_drawGame().update(this);
     }
 
 }
