@@ -29,6 +29,9 @@ public class DrawGame {
         pane.getChildren().add(background);
         drawMap(gameModel.getMap(), pane);
         drawBody(gameModel.get_player(), pane);
+        for (Body e:gameModel.getEnemies()){
+            drawBody(e,pane);
+        }
         Main.getRoot().getChildren().clear();
         Main.getRoot().getChildren().add(pane);
     }

@@ -15,7 +15,7 @@ public class Player extends Body {
 
     public Player(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         super(posX, posY, character, observer);
-        setImage(new Image("/resources/robot.png", true));
+
     }
 
 }
