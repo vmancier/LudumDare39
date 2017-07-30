@@ -53,5 +53,6 @@ public class Movement implements Action {
     private void interrupt() {
         queue.clearQueue();
 //        queue.addFirst(moveTo);
+//        @TODO enlever les précedents mouvements
     }
 }
