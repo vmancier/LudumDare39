@@ -35,6 +35,9 @@ public class MoveTo implements Action {
             x_diff *= -1;
             hori_direct = left;
         }
+        if (x_diff==0 && y_diff==0){
+            queue.executeNext();
+        }
         for (int i = 0; i < x_diff; i++) {
             queue.addFirst(new Movement(this, hori_direct));
         }
@@ -45,6 +48,10 @@ public class MoveTo implements Action {
 
     public ActionQueue getQueue() {
         return queue;
+    }
+
+    public Case getTarget() {
+        return target;
     }
 }
 

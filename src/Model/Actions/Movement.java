@@ -45,6 +45,10 @@ public class Movement implements Action {
         if (!success) {
             this.interrupt();
         }
+        if (moveTo.getTarget().getPos_x() == body.getPos_x()
+                && moveTo.getTarget().getPos_y() == body.getPos_y()) {
+            moveTo.getTarget().set_surbrillance(false);
+        }
     }
 
     private void interrupt() {
