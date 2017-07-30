@@ -35,15 +35,13 @@ public class MoveTo implements Action {
             x_diff *= -1;
             hori_direct = left;
         }
-        if (x_diff==0 && y_diff==0){
-            queue.executeNext();
-        }
         for (int i = 0; i < x_diff; i++) {
             queue.addFirst(new Movement(this, hori_direct));
         }
         for (int j = 0; j < y_diff; j++) {
             queue.addFirst(new Movement(this, vert_direct));
         }
+        queue.executeNext();
     }
 
     public ActionQueue getQueue() {
