@@ -9,6 +9,11 @@ public class ActionQueue {
     Body character;
     private ArrayList<Action> Queue;
 
+
+    public ActionQueue(Body character) {
+        this.character = character;
+    }
+
     public void addFirst(Action action) {
         Queue.add(0, action);
     }
@@ -34,5 +39,9 @@ public class ActionQueue {
             this.getFirst().execute();
             this.removeFirst();
         }
+    }
+
+    public Body getCharacter() {
+        return character;
     }
 }
