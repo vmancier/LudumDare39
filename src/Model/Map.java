@@ -14,9 +14,9 @@ public class Map {
 
         Image image = new Image("/resources/base.jpg", true);
         Image img_surbrillance = new Image("resources/surbrillance.png", true);
-        floor = new Case[TILE_PER_HEIGHT][TILE_PER_WIDTH];
-        for (int i = 0; i < TILE_PER_HEIGHT; i++) {
-            for (int j = 0; j < TILE_PER_WIDTH; j++) {
+        floor = new Case[TILE_PER_WIDTH][TILE_PER_HEIGHT];
+        for (int i = 0; i < TILE_PER_WIDTH; i++) {
+            for (int j = 0; j < TILE_PER_HEIGHT; j++) {
                 floor[i][j]=new Case(observer,image);
                 floor[i][j].set_imgSurbrillance(new ImageView(img_surbrillance));
                 floor[i][j].setPos_x(i);

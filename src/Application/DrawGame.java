@@ -43,8 +43,8 @@ public class DrawGame {
         menu.setX(TILE_SIZE * TILE_PER_WIDTH);
         menu.setY(0);
         root.getChildren().add(menu);
-        for (int i = 0; i < TILE_PER_HEIGHT; i++) {
-            for (int j = 0; j < TILE_PER_WIDTH; j++) {
+        for (int i = 0; i < TILE_PER_WIDTH; i++) {
+            for (int j = 0; j < TILE_PER_HEIGHT; j++) {
                 root.getChildren().add(map.getCase(i, j).get_imageView());
                 if (map.getCase(i, j).get_surbrillance()>0){
                     root.getChildren().add(map.getCase(i, j).get_imgSurbrillance());
