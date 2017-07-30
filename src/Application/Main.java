@@ -13,9 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.File;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 
 
@@ -87,7 +92,15 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-                drawSettings(primaryStage, root);
+                //String musicFile = "src/resources/Sounds/Airhorn.mp3";
+                String musicFile = "src/resources/Sounds/hyena-laugh.mp3";
+
+                Media sound = new Media(Paths.get(musicFile).toUri().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                mediaPlayer.play();
+
+
+                //drawSettings(primaryStage, root);
             }
 
         });
