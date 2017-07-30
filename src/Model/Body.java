@@ -40,6 +40,7 @@ public class Body {
         _sprites_path = "/resources/sprites/" + character.toString().toLowerCase() + "/";
         for (int i = 0; i < 4; i++) {
             _up[i] = new Image(_sprites_path + "up/" + String.format("%d", i) + ".png");
+            System.out.println(_sprites_path + "up/" + String.format("%d", i) + ".png");
             _down[i] = new Image(_sprites_path + "down/" + String.format("%d", i) + ".png");
             _right[i] = new Image(_sprites_path + "right/" + String.format("%d", i) + ".png");
             _left[i] = new Image(_sprites_path + "left/" + String.format("%d", i) + ".png");
