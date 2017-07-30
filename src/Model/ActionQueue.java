@@ -46,6 +46,8 @@ public class ActionQueue {
             Action action = this.getFirst();
             this.removeFirst();
             action.execute();
+        } else {
+            body.stand();
         }
     }
 

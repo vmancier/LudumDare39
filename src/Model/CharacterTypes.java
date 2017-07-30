@@ -1,3 +1,3 @@
 package Model;
 
-public enum CharacterTypes {Player,Mob}
+public enum CharacterTypes { Player , Mob }

@@ -4,8 +4,6 @@ package Model.Actions;
 import Model.ActionQueue;
 import Model.Body;
 
-enum Directions {up, down, right, left}
-
 public class Movement implements Action {
     private MoveTo moveTo;
     private ActionQueue queue;
