@@ -233,4 +233,8 @@ public class Body {
     public CharacterTypes getCharacter() {
         return this.character;
     }
+
+    public AudioClip getSound() {
+        return _sound;
+    }
 }

@@ -39,6 +39,8 @@ public class DrawGame {
     }
 
     private static void drawMap(Map map, Pane root) {
+        Main.get_model().getSound().play();// musique d'ambiance
+
         Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT-BAR_HEIGHT);
         menu.setFill(Color.MIDNIGHTBLUE);
 //        ImageView menu = new ImageView(img_menu);
@@ -89,6 +91,7 @@ public class DrawGame {
         Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
         hide_bar.setFill(Color.GRAY);
 
+        
         root.getChildren().add(energy_bar);
         root.getChildren().add(hide_bar);
     }

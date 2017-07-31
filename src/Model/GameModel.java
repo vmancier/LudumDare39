@@ -47,7 +47,6 @@ public class GameModel implements Runnable {
          _backgroundMusic = "../resources/Sounds/backgroundMusic.mp3";
         URL resource = getClass().getResource(_backgroundMusic);
         _sound = new AudioClip(resource.toString());
-        Main.playSound(_sound,_backgroundMusic,1); //Fonctionne ! à décommenter si on ne fait pas de test de sons
     }
 
     public void setKeyListener(Scene scene){
@@ -179,6 +178,10 @@ public class GameModel implements Runnable {
 
     public Map getMap() {
         return map;
+    }
+
+    public AudioClip getSound() {
+        return _sound;
     }
 
 }
