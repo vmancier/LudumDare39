@@ -18,7 +18,7 @@ public class Entities {
     public static final int HEALTH_MAX = 100;
     public static final int ENERGY_MAX = 1000;
     public static final int ENERGY_COST_MOVE = 5;
-    public static final int ANIMATION_DURATION = 300;
+    public static final int ANIMATION_DURATION = 280;
 
 
     //Enemies

@@ -35,23 +35,23 @@ public class GameModel implements Runnable {
 
     public GameModel() {
         day = 1;
-        keyPressed=new HashSet<>();
+        keyPressed = new HashSet<>();
         Observer observer = new Observer();
         map = new Map(observer);
-        _player = new Player(0, 0, HEALTH_MAX, CharacterTypes.Player, observer);
+        _player = new Player(10, 10, HEALTH_MAX, CharacterTypes.Player, observer);
         Enemies = new ArrayList<Enemy>();
         for (int k = 0; k < 5; k++) {
-            Enemies.add(new Enemy(k, k, ENEMY_HEALTH, CharacterTypes.Mob, observer));
+            Enemies.add(new Enemy(k, 0, ENEMY_HEALTH, CharacterTypes.Mob, observer));
         }
 
-         _backgroundMusic = "../resources/Sounds/backgroundMusic.mp3";
+        _backgroundMusic = "../resources/Sounds/backgroundMusic.mp3";
         URL resource = getClass().getResource(_backgroundMusic);
         _sound = new AudioClip(resource.toString());
-        Main.playSound(_sound,_backgroundMusic,1); //Fonctionne ! à décommenter si on ne fait pas de test de sons
+        Main.playSound(_sound, _backgroundMusic, 1); //Fonctionne ! à décommenter si on ne fait pas de test de sons
     }
 
-    public void setKeyListener(Scene scene){
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+    public void setKeyListener(Scene scene) {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 keyPressed.add(event.getCode());
@@ -96,15 +96,15 @@ public class GameModel implements Runnable {
         if (e.getButton() != MouseButton.PRIMARY) {
             _player.getActionQueue().clearQueue();
         }
-        if (keyPressed.contains(KeyCode.A)){
+        if (keyPressed.contains(KeyCode.A)) {
             System.out.println(cell.is_free());
-            if (cell.is_free()){
-                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
+            System.out.println(isFree(cell.getPos_x(), cell.getPos_y()));
+            if (cell.is_free()) {
+                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
                 _player.getActionQueue().addLast(new Surcharge(cell));
             }
-        }
-        else{
-            if (cell.is_free()){
+        } else {
+            if (cell.is_free()) {
                 cell.add_surbrillance();
                 _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
             }
@@ -120,45 +120,45 @@ public class GameModel implements Runnable {
         //A modifier si jamais ça plante
         if (CharacterTypes.Mob.equals(body.getCharacter())) {
             body.getActionQueue().clearQueue();
-            Action lastaction = _player.getActionQueue().getEnd();
-            if (lastaction instanceof MoveTo) {
-                Case cible=((MoveTo) lastaction).getTarget();
-                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), cible));
-
-            } else {
-                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
-            }
+//            Action lastaction = _player.getActionQueue().getEnd();
+//            if (lastaction instanceof MoveTo) {
+//                Case cible=((MoveTo) lastaction).getTarget();
+//                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), cible));
+//
+//            } else {
+            body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
         }
+
     }
 
-    public boolean isFree(int i, int j){
-        boolean free=true;
+    public boolean isFree(int i, int j) {
+        boolean free = true;
 
-        if (!map.getCase(i,j).is_free()) free=false;
-        if (_player.getPos_x()==i && _player.getPos_y()==j) free=false;
-        for (Body e:Enemies) {
-            if (e.getPos_x()==i && e.getPos_y()==j) free=false;
+        if (!map.getCase(i, j).is_free()) free = false;
+        if (_player.getPos_x() == i && _player.getPos_y() == j) free = false;
+        for (Body e : Enemies) {
+            if (e.getPos_x() == i && e.getPos_y() == j) free = false;
         }
 
         return free;
     }
 
-    public LinkedList<Integer[]> neighbours(int i, int j){
-        LinkedList<Integer[]> l= new LinkedList<>();
-        if (i>0){
-            Integer[] array={i-1,j};
+    public LinkedList<Integer[]> neighbours(int i, int j) {
+        LinkedList<Integer[]> l = new LinkedList<>();
+        if (i > 0) {
+            Integer[] array = {i - 1, j};
             l.add(array);
         }
-        if (i<TILE_PER_WIDTH-1){
-            Integer[] array={i+1,j};
+        if (i < TILE_PER_WIDTH - 1) {
+            Integer[] array = {i + 1, j};
             l.add(array);
         }
-        if (j>0){
-            Integer[] array={i,j-1};
+        if (j > 0) {
+            Integer[] array = {i, j - 1};
             l.add(array);
         }
-        if (i<TILE_PER_HEIGHT-1){
-            Integer[] array={i,j+1};
+        if (j < TILE_PER_HEIGHT - 1) {
+            Integer[] array = {i, j + 1};
             l.add(array);
         }
 
