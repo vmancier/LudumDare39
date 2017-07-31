@@ -28,7 +28,10 @@ public class GameModel implements Runnable {
     private Player _player;
     private HashSet<KeyCode> keyPressed;
 
+    private int day;
+
     public GameModel() {
+        day = 1;
         keyPressed=new HashSet<>();
         Observer observer = new Observer();
         map = new Map(observer);
@@ -52,10 +55,6 @@ public class GameModel implements Runnable {
                 keyPressed.remove(event.getCode());
             }
         });
-    }
-
-    public Player get_player() {
-        return _player;
     }
 
     public class Observer {
@@ -85,21 +84,22 @@ public class GameModel implements Runnable {
         //Main.get_drawGame().update(this);
     }
 
-    public Map getMap() {
-        return map;
-    }
-
     private void updateCaseClicked(Case cell, MouseEvent e) {
         if (e.getButton() != MouseButton.PRIMARY) {
             _player.getActionQueue().clearQueue();
         }
         if (keyPressed.contains(KeyCode.A)){
-            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
-            _player.getActionQueue().addLast(new Surcharge(cell));
+            System.out.println(cell.is_free());
+            if (cell.is_free()){
+                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
+                _player.getActionQueue().addLast(new Surcharge(cell));
+            }
         }
         else{
-            cell.add_surbrillance();
-            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
+            if (cell.is_free()){
+                cell.add_surbrillance();
+                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
+            }
         }
         Main.get_drawGame().updateForeground(Main.getRoot());
     }
@@ -121,10 +121,6 @@ public class GameModel implements Runnable {
                 body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
             }
         }
-    }
-
-    public ArrayList<Enemy> getEnemies() {
-        return Enemies;
     }
 
     public boolean isFree(int i, int j){
@@ -161,5 +157,20 @@ public class GameModel implements Runnable {
         return l;
     }
 
+    public int getDay() {
+        return day;
+    }
+
+    public Player get_player() {
+        return _player;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return Enemies;
+    }
+
+    public Map getMap() {
+        return map;
+    }
 
 }

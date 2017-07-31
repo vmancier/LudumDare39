@@ -27,6 +27,7 @@ public class Case {
     public Case(GameModel.Observer observer, Image img) {
         _observer = observer;
         _image = img;
+        _free=true;
         _imageView = new ImageView(_image);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this, e);
