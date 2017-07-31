@@ -32,8 +32,9 @@ public class Map {
         int j=0;
         while (initsc.hasNextLine()){
             for (char c : initsc.nextLine().toCharArray()){
-                floor[i][j]=new Case(observer,image,img_cible);
+                floor[i][j]=new Case(observer,image);
                 floor[i][j].set_imgSurbrillance(new ImageView(img_surbrillance));
+                floor[i][j].set_imgTarget(new ImageView(img_cible));
                 floor[i][j].setPos_x(i);
                 floor[i][j].setPos_y(j);
 
