@@ -20,12 +20,12 @@ public class Player extends Body {
     private GameModel.Observer _observer;
     private Image _image;
     private ImageView _imageView;
-    private int energy;
+    private int _energy;
 
 
-    public Player(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
-        super(posX, posY, character, observer);
-        energy = Entities.ENERGY_MAX;
+    public Player(int posX, int posY, int health, CharacterTypes character, GameModel.Observer observer) {
+        super(posX, posY, health, character, observer);
+        _energy = Entities.ENERGY_MAX;
     }
 
     public boolean moveUp() {
@@ -53,16 +53,21 @@ public class Player extends Body {
     }
 
     public void loseEnergy(int cost){
-        if(energy>=cost){
-            energy-=cost;
+        if(_energy>=cost){
+            _energy-=cost;
         }else{
             System.out.println("vous n'avez pas assez d'énergie");
         }
         Main.get_drawGame().drawEnergyBar(Main.getRoot());
     }
 
+    public void loseHealth(int damages){
+        super.loseHealth(damages);
+        Main.get_drawGame().drawHealthBar(Main.getRoot());
+    }
+
     public int getEnergy(){
-        return energy;
+        return _energy;
     }
 
 }

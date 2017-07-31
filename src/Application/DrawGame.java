@@ -37,12 +37,10 @@ public class DrawGame {
     }
 
     private static void drawMap(Map map, Pane root) {
-        Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT-ENERGY_BAR_HEIGHT);
+        Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT-BAR_HEIGHT);
         menu.setFill(Color.MIDNIGHTBLUE);
 //        ImageView menu = new ImageView(img_menu);
         root.getChildren().add(menu);
-
-        drawEnergyBar(root);
 
         for (int i = 0; i < TILE_PER_WIDTH; i++) {
             for (int j = 0; j < TILE_PER_HEIGHT; j++) {
@@ -55,6 +53,8 @@ public class DrawGame {
                 }
             }
         }
+        drawEnergyBar(root);
+        drawHealthBar(root);
     }
 
     private static void drawBody(Body body, Pane root) {
@@ -67,7 +67,7 @@ public class DrawGame {
     }
 
     public static void drawEnergyBar(Pane root){
-        Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
+        Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
         energy_bar.setFill(Color.GOLD);
         root.getChildren().add(energy_bar);
 
@@ -75,11 +75,22 @@ public class DrawGame {
         float energyPercentage =  (float)energy/Entities.ENERGY_MAX;
         float hide_pos = energyPercentage*WINDOW_WIDTH;
 
-        Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
+        Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
         hide_bar.setFill(Color.GRAY);
         root.getChildren().add(hide_bar);
-
-
     }
 
+    public static void drawHealthBar(Pane root){
+        Rectangle health_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
+        health_bar.setFill(Color.GREEN);
+        root.getChildren().add(health_bar);
+
+        int health = Main.get_model().get_player().getHealth();
+        float healthPercentage =  (float)health/Entities.HEALTH_MAX;
+        float hide_pos = healthPercentage*WINDOW_WIDTH;
+
+        Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
+        hide_bar.setFill(Color.BLUE);
+        root.getChildren().add(hide_bar);
+    }
 }

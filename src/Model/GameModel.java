@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import static Application.Entities.TILE_PER_HEIGHT;
-import static Application.Entities.TILE_PER_WIDTH;
+import static Application.Entities.*;
 
 public class GameModel implements Runnable {
 
@@ -33,10 +32,10 @@ public class GameModel implements Runnable {
         keyPressed=new HashSet<>();
         Observer observer = new Observer();
         map = new Map(observer);
-        _player = new Player(0, 0, CharacterTypes.Player, observer);
+        _player = new Player(0, 0, HEALTH_MAX, CharacterTypes.Player, observer);
         Enemies = new ArrayList<Enemy>();
         for (int k = 0; k < 5; k++) {
-            Enemies.add(new Enemy(k, k, CharacterTypes.Mob, observer));
+            Enemies.add(new Enemy(k, k, ENEMY_HEALTH, CharacterTypes.Mob, observer));
         }
     }
 
