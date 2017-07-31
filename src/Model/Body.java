@@ -206,7 +206,7 @@ public class Body {
         }
 
         if(_health==0){
-
+            this.die();
         }
     }
 
