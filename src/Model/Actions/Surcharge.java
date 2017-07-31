@@ -22,6 +22,7 @@ public class Surcharge extends Attack {
 
     @Override
     public void execute() {
+        _sound.play();
         animate.start();
         _cell.remove_target();
         for (Body e : Main.get_model().getEnemies()) {

@@ -5,9 +5,11 @@ import Model.Case;
 import com.sun.javafx.scene.traversal.SubSceneTraversalEngine;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -19,6 +21,7 @@ public abstract class Attack implements Action {
     private int sprites_number;
     private Image[] sprites;
     private ImageView imageView;
+    protected AudioClip _sound;
 
     Attack(String directory, int dir_length, int _x, int _y) {
         folder = directory;
@@ -32,6 +35,11 @@ public abstract class Attack implements Action {
         imageView = new ImageView(sprites[0]);
         getImageView().setX(getX());
         getImageView().setY(getY());
+
+        // Init sons
+        String soundFile = "../../resources/Sounds/bolt.wav";
+        URL resource = getClass().getResource(soundFile);
+        _sound = new AudioClip(resource.toString());
     }
 
     public String getFolder() {
