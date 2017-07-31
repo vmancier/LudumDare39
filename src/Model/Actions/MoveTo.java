@@ -14,11 +14,20 @@ public class MoveTo implements Action {
     private ActionQueue queue;
     private Case target;
     private Body subject;
+    private int range;
+
+    public MoveTo(ActionQueue queue, Case target, int range) {
+        this.queue = queue;
+        this.target = target;
+        this.subject = queue.getBody();
+        this.range = range;
+    }
 
     public MoveTo(ActionQueue queue, Case target) {
         this.queue = queue;
         this.target = target;
         this.subject = queue.getBody();
+        this.range = 0;
     }
 
     //    @Override
@@ -63,12 +72,12 @@ public class MoveTo implements Action {
         AStarNode goal = new AStarNode(target.getPos_x(), target.getPos_y());
 //        System.out.println("start"+start.toString());
 //        System.out.println("goal"+goal.toString());
-        if (start.equals(goal)) {
+        if (start.heuristicDistanceTo(goal)<=range) {
             if (subject.getCharacter() == Player) {
                 target.remove_surbrillance();
             }
         } else {
-            ArrayList<AStarNode> way = AStarNode.getShortestPath(start, goal);
+            ArrayList<AStarNode> way = AStarNode.getShortestPath(start, goal, range);
             if (way != null && way.size() != 0) {
                 queue.addFirst(this);
                 AStarNode lastOne = way.get(0);

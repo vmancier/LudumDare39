@@ -123,7 +123,7 @@ public class GameModel implements Runnable {
 //                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), cible));
 //
 //            } else {
-            body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
+            body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y()),1));
         }
 
     }
