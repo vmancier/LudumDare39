@@ -2,6 +2,7 @@ package Model.Actions;
 
 import Application.Entities;
 import Application.Main;
+import Model.Body;
 import Model.Enemy;
 import Model.Player;
 import javafx.animation.AnimationTimer;
@@ -17,10 +18,10 @@ import java.net.URL;
 
 public class Lazer extends Attack {
 
-    Player _player;
-    Enemy _enemy;
+    Body _player;
+    Body _enemy;
 
-    public Lazer(Player player, Enemy ennemy) {
+    public Lazer(Body player, Body ennemy) {
         super("Lazer", 1, player.getPos_x() * Entities.TILE_SIZE, player.getPos_y() * Entities.TILE_SIZE);
         _player = player;
         _enemy = ennemy;
