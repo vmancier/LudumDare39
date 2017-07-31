@@ -125,6 +125,7 @@ public class GameModel implements Runnable {
 
     public void killEnemy(Body e){
         Enemies.remove(e);
+        Main.get_drawGame().update(this);
     }
 
     public boolean isFree(int i, int j) {

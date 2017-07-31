@@ -22,9 +22,8 @@ public class Enemy extends Body {
         _targeted=new ImageView(_imgTargeted);
     }
 
-    //@Override
-    private void die(){
-        _imageView.setImage(null);
+    @Override
+    public void die(){
         Main.get_model().killEnemy(this);
     }
 

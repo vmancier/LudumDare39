@@ -4,6 +4,7 @@ import Application.Entities;
 import Application.Main;
 import Model.Body;
 import Model.Case;
+import Model.Enemy;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +14,7 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Surcharge extends Attack {
 
@@ -35,7 +37,8 @@ public class Surcharge extends Attack {
         _sound.play();
         start();
         _cell.remove_target();
-        for (Body e : Main.get_model().getEnemies()) {
+        ArrayList<Enemy> copy= (ArrayList<Enemy>) Main.get_model().getEnemies().clone();
+        for (Body e : copy) {
             if (Math.abs(e.getPos_x() - _cell.getPos_x()) <= 3 && Math.abs(e.getPos_y() - _cell.getPos_y()) <= 3) {
                 e.loseHealth(50);
             }
