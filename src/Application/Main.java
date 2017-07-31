@@ -89,8 +89,7 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-                //String musicFile = "src/resources/Sounds/Airhorn.mp3";
-                String musicFile = "src/resources/Sounds/hyena-laugh.mp3";
+                String musicFile = "src/resources/Sounds/Spinning.mp3";
 
                 Media sound = new Media(Paths.get(musicFile).toUri().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);

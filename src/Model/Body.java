@@ -9,12 +9,15 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import Model.Actions.Directions;
+
+import java.net.URL;
 
 public class Body {
 
@@ -30,6 +33,7 @@ public class Body {
     private Image[] _down = new Image[4];
     private Image[] _left = new Image[4];
     private Image[] _right = new Image[4];
+    protected AudioClip sound;
 
     public Body(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         actionQueue = new ActionQueue(this);
@@ -153,6 +157,14 @@ public class Body {
     public boolean moveLeft() {
         animation(_left, Directions.left);
         return true;
+    }
+
+    public void playSound(String soundFile){
+        if(!sound.isPlaying()){
+            URL resource = getClass().getResource(soundFile);
+            sound = new AudioClip(resource.toString());
+            sound.play();
+        }
     }
 
     public void stand() {
