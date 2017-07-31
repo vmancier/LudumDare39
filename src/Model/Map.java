@@ -17,12 +17,13 @@ public class Map {
     public Map(GameModel.Observer observer) {
         Image image = new Image("/resources/base.jpg", true);
         Image img_surbrillance = new Image("resources/surbrillance.png", true);
+        Image img_cible = new Image("resources/selected.png", true);
 
         floor = new Case[TILE_PER_WIDTH][TILE_PER_HEIGHT];
 
         FileInputStream initFile = null;
         try {
-            initFile = new FileInputStream("D:\\Java\\LudumDare39\\src\\resources\\map.txt");
+            initFile = new FileInputStream("src/resources/map.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -31,7 +32,7 @@ public class Map {
         int j=0;
         while (initsc.hasNextLine()){
             for (char c : initsc.nextLine().toCharArray()){
-                floor[i][j]=new Case(observer,image);
+                floor[i][j]=new Case(observer,image,img_cible);
                 floor[i][j].set_imgSurbrillance(new ImageView(img_surbrillance));
                 floor[i][j].setPos_x(i);
                 floor[i][j].setPos_y(j);

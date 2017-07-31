@@ -30,6 +30,7 @@ public class Main extends Application {
     private static long _time;
     private static Pane root = new Pane();
     private double last = 0;
+    private static Scene scene;
 
     public static void main(String args[]) {
         _drawGame = new DrawGame();
@@ -40,11 +41,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        scene=new Scene(root, Entities.WINDOW_WIDTH, Entities.WINDOW_HEIGHT);
         primaryStage.setTitle(Entities.GAME_NAME);
         drawMenu(primaryStage, root);
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, Entities.WINDOW_WIDTH, Entities.WINDOW_HEIGHT));
+        primaryStage.setScene(scene);
         primaryStage.show();
+        _model.setKeyListener(scene);
     }
 
     public void drawMenu(Stage primaryStage, Pane root) {
@@ -141,5 +144,9 @@ public class Main extends Application {
 
     public static GameModel get_model() {
         return _model;
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 }

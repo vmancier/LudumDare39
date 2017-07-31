@@ -6,8 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import static Application.Entities.TILE_PER_HEIGHT;
-import static Application.Entities.TILE_PER_WIDTH;
 import static Application.Entities.TILE_SIZE;
 
 enum Type {Floor, Hole}
@@ -18,17 +16,19 @@ public class Case {
     private int pos_y;
     private boolean _free;
     private int _surbrillance = 0;
+    private int _target = 0;
     private Type _type;
     private GameModel.Observer _observer;
     private Image _image;
     private ImageView _imageView;
     private ImageView _imgSurbrillance;
+    private ImageView _imgTarget;
 
-    public Case(GameModel.Observer observer, Image img) {
+    public Case(GameModel.Observer observer, Image img, Image imgTarget) {
         _observer = observer;
         _image = img;
         _imageView = new ImageView(_image);
-
+        _imgTarget = new ImageView(imgTarget);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this, e);
         });
@@ -94,6 +94,22 @@ public class Case {
         if (this._surbrillance<=0){
             this._surbrillance =0;
             Main.getRoot().getChildren().remove(_imgSurbrillance);
+            DrawGame.updateForeground(Main.getRoot());
+        }
+    }
+
+    public void add_target(){
+        this._target += 1;
+        if (_surbrillance==1){
+            Main.getRoot().getChildren().add(_imgTarget);
+        }
+    }
+
+    public void remove_target(){
+        this._target -= 1;
+        if (this._target <= 0){
+            this._target = 0;
+            Main.getRoot().getChildren().remove(_imgTarget);
             DrawGame.updateForeground(Main.getRoot());
         }
     }

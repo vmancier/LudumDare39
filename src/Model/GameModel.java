@@ -6,11 +6,16 @@ import Application.Main;
 import Model.Actions.Action;
 import Model.Actions.MoveTo;
 import javafx.animation.*;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import static Application.Entities.TILE_PER_HEIGHT;
@@ -21,8 +26,10 @@ public class GameModel implements Runnable {
     private Map map;
     private ArrayList<Enemy> Enemies;
     private Player _player;
+    private HashSet<KeyCode> keyPressed;
 
     public GameModel() {
+        keyPressed=new HashSet<>();
         Observer observer = new Observer();
         map = new Map(observer);
         _player = new Player(0, 0, CharacterTypes.Player, observer);
@@ -30,6 +37,22 @@ public class GameModel implements Runnable {
         for (int k = 0; k < 5; k++) {
             Enemies.add(new Enemy(k, k, CharacterTypes.Mob, observer));
         }
+    }
+
+    public void setKeyListener(Scene scene){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCode());
+                keyPressed.add(event.getCode());
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                keyPressed.remove(event.getCode());
+            }
+        });
     }
 
     public Player get_player() {
@@ -68,12 +91,17 @@ public class GameModel implements Runnable {
     }
 
     private void updateCaseClicked(Case cell, MouseEvent e) {
-        if (e.getButton() != MouseButton.PRIMARY) {
-            _player.getActionQueue().clearQueue();
+        if (keyPressed.contains(KeyCode.A)){
+            cell.add_target();
         }
-        cell.add_surbrillance();
-        _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
-        //Main.get_drawGame().update(this);
+        else{
+            if (e.getButton() != MouseButton.PRIMARY) {
+                _player.getActionQueue().clearQueue();
+            }
+            cell.add_surbrillance();
+            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
+            //Main.get_drawGame().update(this);
+        }
     }
 
     private void updatePlayerClicked(Player player) {
@@ -139,4 +167,6 @@ public class GameModel implements Runnable {
 
         return l;
     }
+
+
 }

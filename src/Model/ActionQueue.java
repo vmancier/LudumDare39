@@ -31,6 +31,7 @@ public class ActionQueue {
 
     public Action getEnd() {
         return Queue.get(Queue.size()-1);
+        //@TODO attention si la Queue est vide !
     }
 
     public void clearQueue() {
