@@ -179,6 +179,10 @@ public class Body {
         if(_health>=damages){
             _health-=damages;
         }else{
+            _health=0;
+        }
+
+        if(_health==0){
             System.out.println("vous n'avez plus de vie");
         }
     }
