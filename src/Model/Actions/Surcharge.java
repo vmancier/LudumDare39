@@ -9,7 +9,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+
+import java.net.URL;
 
 public class Surcharge extends Attack {
 
@@ -20,6 +23,11 @@ public class Surcharge extends Attack {
                 (cell.getPos_x() - 3) * Entities.TILE_SIZE, (cell.getPos_y() - 3) * Entities.TILE_SIZE);
         _cell = cell;
         _cell.add_target();
+
+        // Init sons
+        String soundFile = "../../resources/Sounds/bolt.wav";
+        URL resource = getClass().getResource(soundFile);
+        _sound = new AudioClip(resource.toString());
     }
 
     @Override

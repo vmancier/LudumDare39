@@ -35,11 +35,6 @@ public abstract class Attack implements Action {
         imageView = new ImageView(sprites[0]);
         getImageView().setX(getX());
         getImageView().setY(getY());
-
-        // Init sons
-        String soundFile = "../../resources/Sounds/bolt.wav";
-        URL resource = getClass().getResource(soundFile);
-        _sound = new AudioClip(resource.toString());
     }
 
     public String getFolder() {
