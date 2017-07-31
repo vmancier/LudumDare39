@@ -1,6 +1,7 @@
-package Model.Actions;
+package Model.Actions.MovementAlgorithm;
 
 import Application.Main;
+import Model.Actions.Directions;
 
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class AStarNode implements Comparable<AStarNode> {
         this.fScore = infinity;
     }
 
-    public static ArrayList<AStarNode> getShortestPath(AStarNode start, AStarNode goal,int range) {
+    public static ArrayList<AStarNode> getShortestPath(AStarNode start, AStarNode goal, int range) {
         HashSet<AStarNode> closedSet = new HashSet<>();
         PriorityQueue<AStarNode> openSet = new PriorityQueue<>();
         HashMap<Coordinate, AStarNode> openSet2 = new HashMap<>();
@@ -48,7 +49,7 @@ public class AStarNode implements Comparable<AStarNode> {
 //            System.out.println("FScore  : "+current.getfScore());
 //            System.out.println("Node examinée :"+current.toString());
             //a priori pas besoin de l'enelver de openSet2
-            if (current.equals(goal) || current.getfScore()-current.getgScore()<=range) {
+            if (current.equals(goal) || current.getfScore() - current.getgScore() <= range) {
 //                System.out.println("L'arrivé a été atteinte");
                 return AStarNode.reconstructPath(current);
             }

@@ -1,12 +1,12 @@
 package Model.Actions;
 
 import Model.ActionQueue;
+import Model.Actions.MovementAlgorithm.AStarNode;
 import Model.Body;
 import Model.Case;
 
 import java.util.*;
 
-import static Application.Entities.*;
 import static Model.Actions.Directions.*;
 import static Model.CharacterTypes.Player;
 
@@ -14,7 +14,8 @@ public class MoveTo implements Action {
     private ActionQueue queue;
     private Case target;
     private Body subject;
-    private int range;
+    private int range=0;
+    private int attemps=0;
 
     public MoveTo(ActionQueue queue, Case target, int range) {
         this.queue = queue;
@@ -23,12 +24,20 @@ public class MoveTo implements Action {
         this.range = range;
     }
 
+    public MoveTo(ActionQueue queue, Case target, int range,int attempts) {
+        this.queue = queue;
+        this.target = target;
+        this.subject = queue.getBody();
+        this.range = range;
+        this.attemps=attemps;
+    }
+
     public MoveTo(ActionQueue queue, Case target) {
         this.queue = queue;
         this.target = target;
         this.subject = queue.getBody();
-        this.range = 0;
     }
+
 
     //    @Override
     public void execute2() {
@@ -78,12 +87,16 @@ public class MoveTo implements Action {
             }
         } else {
             ArrayList<AStarNode> way = AStarNode.getShortestPath(start, goal, range);
+            int ind_min=1;
+            if (attemps!=0){
+                ind_min=Math.min(1,way.size()-attemps);
+            }
             if (way != null && way.size() != 0) {
                 queue.addFirst(this);
                 AStarNode lastOne = way.get(0);
                 AStarNode node;
 //                System.out.println(way.toString());
-                for (int i = 1; i < way.size(); i++) {
+                for (int i = ind_min; i < way.size(); i++) {
                     node = way.get(i);
                     //pour savoir si il faut aller en haut, en bas ...
                     Directions direction = node.goTo(lastOne);

@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Actions.Action;
+import Model.Actions.Movement;
 
 import java.lang.Character;
 import java.util.ArrayList;
@@ -57,5 +58,11 @@ public class ActionQueue {
 
     public Body getBody() {
         return body;
+    }
+
+    public void removeNextMouvements() {
+        while (getFirst() instanceof Movement){
+            this.endFirst();
+        }
     }
 }

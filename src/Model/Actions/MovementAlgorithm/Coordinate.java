@@ -1,4 +1,4 @@
-package Model.Actions;
+package Model.Actions.MovementAlgorithm;
 
 public class Coordinate {
     private int x;

@@ -123,7 +123,7 @@ public class GameModel implements Runnable {
 
     }
 
-    public void killEnemy(Body e){
+    public void killEnemy(Body e) {
         Enemies.remove(e);
         Main.get_drawGame().update(this);
     }

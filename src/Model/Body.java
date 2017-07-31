@@ -1,6 +1,7 @@
 package Model;
 
 import Application.Entities;
+import Application.Main;
 import Model.Actions.Action;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -266,5 +267,9 @@ public abstract class Body {
 
     public AudioClip getSound() {
         return _sound;
+    }
+
+    public Case getCase() {
+        return Main.get_model().getMap().getCase(pos_x, pos_y);
     }
 }

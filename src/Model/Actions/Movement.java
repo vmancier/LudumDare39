@@ -1,6 +1,7 @@
 package Model.Actions;
 
 
+import Application.Main;
 import Model.ActionQueue;
 import Model.Body;
 
@@ -24,35 +25,36 @@ public class Movement implements Action {
         boolean success = true;
         switch (direction) {
             case up: {
-                success = body.moveUp();
+                if (Main.get_model().isFree(body.getPos_x(),body.getPos_y()-1)){
+                    success = body.moveUp();
+                }
                 break;
             }
             case down: {
-                success = body.moveDown();
+                if (Main.get_model().isFree(body.getPos_x(),body.getPos_y()+1)){
+                    success = body.moveDown();
+                }
                 break;
             }
             case right: {
-                success = body.moveRight();
+                if (Main.get_model().isFree(body.getPos_x()+1,body.getPos_y())){
+                success = body.moveRight();}
                 break;
             }
             case left: {
-                success = body.moveLeft();
+                if (Main.get_model().isFree(body.getPos_x()-1,body.getPos_y())){
+                success = body.moveLeft();}
                 break;
             }
         }
         if (!success) {
-            this.interrupt();
+            queue.removeNextMouvements();
+            queue.executeNext();
         }
     }
 
     @Override
     public void end() {
 
-    }
-
-    private void interrupt() {
-        queue.clearQueue();
-//        queue.addFirst(moveTo);
-//        @TODO enlever les précedents mouvements
     }
 }
