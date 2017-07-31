@@ -42,15 +42,16 @@ public class Animate {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long unused) {
-                int x = 1;
+                int x = 4;
                 long now = System.currentTimeMillis();
-                int elapsed = (int) (now % (Entities.ANIMATION_DURATION * x));
-                int step = Entities.ANIMATION_DURATION * (x / _action.getSprites_number());
-                for (int i = 1; i <= _action.getSprites_number(); i++) {
-                    System.out.println(elapsed);
+                int elapsed = (int) (now - starter_time);
+                float step = (float) Entities.ANIMATION_DURATION * (x / _action.getSprites_number());
+                for (int i = 1; i < _action.getSprites_number(); i++) {
                     if (elapsed < step * i) {
-                        System.out.println(String.format("i = %d ok", i));
                         _action.setImageNumber(i);
+                        break;
+                    } else {
+                        _action.setImageNumber(_action.getSprites_number() - 1);
                     }
                 }
             }
@@ -67,9 +68,9 @@ public class Animate {
             }
         };
 
-        KeyValue keyValueX = new KeyValue(_action.getImageView().scaleXProperty(), 1.5);
-        KeyValue keyValueY = new KeyValue(_action.getImageView().scaleYProperty(), 1.5);
-        KeyFrame keyFrame = new KeyFrame(duration, onFinished, keyValueX, keyValueY);
+//        KeyValue keyValueX = new KeyValue(_action.getImageView().scaleXProperty(), 1);
+//        KeyValue keyValueY = new KeyValue(_action.getImageView().scaleYProperty(), 1);
+        KeyFrame keyFrame = new KeyFrame(duration, onFinished);
 
         //add the keyframe to the timeline
         timeline.getKeyFrames().add(keyFrame);
