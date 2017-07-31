@@ -89,12 +89,17 @@ public class GameModel implements Runnable {
             _player.getActionQueue().clearQueue();
         }
         if (keyPressed.contains(KeyCode.A)){
-            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
-            _player.getActionQueue().addLast(new Surcharge(cell));
+            System.out.println(cell.is_free());
+            if (cell.is_free()){
+                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
+                _player.getActionQueue().addLast(new Surcharge(cell));
+            }
         }
         else{
-            cell.add_surbrillance();
-            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
+            if (cell.is_free()){
+                cell.add_surbrillance();
+                _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
+            }
         }
         Main.get_drawGame().updateForeground(Main.getRoot());
     }
