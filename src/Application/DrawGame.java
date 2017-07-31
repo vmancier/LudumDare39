@@ -91,7 +91,7 @@ public class DrawGame {
         Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
         hide_bar.setFill(Color.GRAY);
 
-        
+
         root.getChildren().add(energy_bar);
         root.getChildren().add(hide_bar);
     }

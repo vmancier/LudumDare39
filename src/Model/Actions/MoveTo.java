@@ -4,7 +4,11 @@ import Model.ActionQueue;
 import Model.Body;
 import Model.Case;
 
+import java.util.*;
+
+import static Application.Entities.*;
 import static Model.Actions.Directions.*;
+import static Model.CharacterTypes.Player;
 
 public class MoveTo implements Action {
     private ActionQueue queue;
@@ -17,8 +21,8 @@ public class MoveTo implements Action {
         this.subject = queue.getBody();
     }
 
-    @Override
-    public void execute() {
+    //    @Override
+    public void execute2() {
         int x_diff = target.getPos_x() - subject.getPos_x();
         int y_diff = target.getPos_y() - subject.getPos_y();
         Directions vert_direct;
@@ -35,10 +39,11 @@ public class MoveTo implements Action {
             x_diff *= -1;
             hori_direct = left;
         }
-        if (x_diff==0 && y_diff==0){
-            target.remove_surbrillance();
-        }
-        else {
+        if (x_diff == 0 && y_diff == 0) {
+            if (subject.getCharacter() == Player) {
+                target.remove_surbrillance();
+            }
+        } else {
             queue.addFirst(this);
         }
 
@@ -49,6 +54,44 @@ public class MoveTo implements Action {
             queue.addFirst(new Movement(this, vert_direct));
         }
         queue.executeNext();
+
+    }
+
+    @Override
+    public void execute() {
+        AStarNode start = new AStarNode(subject.getPos_x(), subject.getPos_y());
+        AStarNode goal = new AStarNode(target.getPos_x(), target.getPos_y());
+//        System.out.println("start"+start.toString());
+//        System.out.println("goal"+goal.toString());
+        if (start.equals(goal)) {
+            if (subject.getCharacter() == Player) {
+                target.remove_surbrillance();
+            }
+        } else {
+            ArrayList<AStarNode> way = AStarNode.getShortestPath(start, goal);
+            if (way != null && way.size() != 0) {
+                queue.addFirst(this);
+                AStarNode lastOne = way.get(0);
+                AStarNode node;
+//                System.out.println(way.toString());
+                for (int i = 1; i < way.size(); i++) {
+                    node = way.get(i);
+                    //pour savoir si il faut aller en haut, en bas ...
+                    Directions direction = node.goTo(lastOne);
+//                    System.out.println("Direction : " +direction+"\n"+node.toString());
+                    if (direction != null) {
+                        queue.addFirst(new Movement(this, direction));
+                    }
+                    lastOne = node;
+                }
+            } else {
+                target.remove_surbrillance();
+                System.out.println("Not accessible");
+            }
+        }
+//        System.out.println("Avant execute next");
+        queue.executeNext();
+//        System.out.println("premiere action effectuée");
     }
 
     @Override
