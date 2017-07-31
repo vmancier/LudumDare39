@@ -70,9 +70,10 @@ public class Case {
     public void set_free(boolean _free) {
         this._free = _free;
         if (this.is_free()) {
-            this.setImage(new Image("/resources/base.jpg", true));
+            System.out.println("Ok");
+            _imageView.setImage(new Image("/resources/base.jpg", true));
         } else {
-            this.setImage(new Image("/resources/hole.jpg", true));
+            _imageView.setImage(new Image("/resources/hole.jpg", true));
         }
 //        @TODO actualiser graphe
     }

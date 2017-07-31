@@ -11,6 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+
+import static Application.Entities.TILE_PER_HEIGHT;
+import static Application.Entities.TILE_PER_WIDTH;
 
 public class GameModel implements Runnable {
 
@@ -63,10 +67,6 @@ public class GameModel implements Runnable {
         return map;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
     private void updateCaseClicked(Case cell, MouseEvent e) {
         if (e.getButton() != MouseButton.PRIMARY) {
             _player.getActionQueue().clearQueue();
@@ -104,5 +104,39 @@ public class GameModel implements Runnable {
 
     public ArrayList<Enemy> getEnemies() {
         return Enemies;
+    }
+
+    public boolean isFree(int i, int j){
+        boolean free=true;
+
+        if (!map.getCase(i,j).is_free()) free=false;
+        if (_player.getPos_x()==i && _player.getPos_y()==j) free=false;
+        for (Body e:Enemies) {
+            if (e.getPos_x()==i && e.getPos_y()==j) free=false;
+        }
+
+        return free;
+    }
+
+    public LinkedList<Integer[]> neighbours(int i, int j){
+        LinkedList<Integer[]> l= new LinkedList<>();
+        if (i>0){
+            Integer[] array={i-1,j};
+            l.add(array);
+        }
+        if (i<TILE_PER_WIDTH-1){
+            Integer[] array={i+1,j};
+            l.add(array);
+        }
+        if (j>0){
+            Integer[] array={i,j-1};
+            l.add(array);
+        }
+        if (i<TILE_PER_HEIGHT-1){
+            Integer[] array={i,j+1};
+            l.add(array);
+        }
+
+        return l;
     }
 }

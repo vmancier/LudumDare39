@@ -40,14 +40,10 @@ public class DrawGame {
         Rectangle menu = new Rectangle(TILE_SIZE * TILE_PER_WIDTH, 0, MENU_WIDTH, WINDOW_HEIGHT-ENERGY_BAR_HEIGHT);
         menu.setFill(Color.MIDNIGHTBLUE);
 //        ImageView menu = new ImageView(img_menu);
-//        menu.setX(TILE_SIZE * TILE_PER_WIDTH);
-//        menu.setY(0);
         root.getChildren().add(menu);
         Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
         energy_bar.setFill(Color.GOLD);
 //        ImageView menu = new ImageView(img_menu);
-//        energy_bar.setX(0);
-//        energy_bar.setY(TILE_SIZE * TILE_PER_HEIGHT);
         root.getChildren().add(energy_bar);
         for (int i = 0; i < TILE_PER_WIDTH; i++) {
             for (int j = 0; j < TILE_PER_HEIGHT; j++) {
