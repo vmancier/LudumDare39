@@ -5,6 +5,7 @@ import Application.Entities;
 import Application.Main;
 import Model.Actions.Action;
 import Model.Actions.MoveTo;
+import Model.Actions.Surcharge;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -90,17 +91,18 @@ public class GameModel implements Runnable {
     }
 
     private void updateCaseClicked(Case cell, MouseEvent e) {
+        if (e.getButton() != MouseButton.PRIMARY) {
+            _player.getActionQueue().clearQueue();
+        }
         if (keyPressed.contains(KeyCode.A)){
-            cell.add_target();
+            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),cell));
+            _player.getActionQueue().addLast(new Surcharge(cell));
         }
         else{
-            if (e.getButton() != MouseButton.PRIMARY) {
-                _player.getActionQueue().clearQueue();
-            }
             cell.add_surbrillance();
             _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
-            //Main.get_drawGame().update(this);
         }
+        Main.get_drawGame().updateForeground(Main.getRoot());
     }
 
     private void updatePlayerClicked(Player player) {
