@@ -91,13 +91,11 @@ public class Main extends Application {
         settings.setPrefSize(Entities.WINDOW_WIDTH, 60);
         settings.setText("Settings");
         settings.setOnMousePressed(new EventHandler<MouseEvent>() {
-
             @Override
             public void handle(MouseEvent event) {
 
                 //drawSettings(primaryStage, root);
             }
-
         });
         settings.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -112,7 +110,6 @@ public class Main extends Application {
         quit.setPrefSize(Entities.WINDOW_WIDTH, 60);
         quit.setText("Quit");
         quit.setOnMousePressed(new EventHandler<MouseEvent>() {
-
             @Override
             public void handle(MouseEvent event) {
                 System.exit(0);//Quitter le jeu
