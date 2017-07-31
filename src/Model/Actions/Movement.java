@@ -19,6 +19,8 @@ public class Movement implements Action {
 
     @Override
     public void execute() {
+//        @TODO Checker si la case visée est libre.
+//        @TODO Si elle ne l'est pas, annuler toutes les actions de mouvements suivantes et executeNext (pour pas perdre de tour)
         boolean success = true;
         switch (direction) {
             case up: {
