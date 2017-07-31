@@ -9,7 +9,6 @@ public class ActionQueue {
     Body body;
     private ArrayList<Action> Queue;
 
-
     public ActionQueue(Body character) {
         Queue=new ArrayList<Action>();
         this.body = character;
