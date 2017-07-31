@@ -2,8 +2,6 @@ package Model.Actions;
 
 import Application.Entities;
 import Application.Main;
-import Model.ActionQueue;
-import Model.Animate;
 import Model.Body;
 import Model.Case;
 import javafx.animation.AnimationTimer;
@@ -15,7 +13,6 @@ import javafx.util.Duration;
 
 public class Surcharge extends Attack {
 
-    private Animate animate;
     private Case _cell;
 
     public Surcharge(Case cell) {
@@ -23,7 +20,6 @@ public class Surcharge extends Attack {
                 (cell.getPos_x() - 3) * Entities.TILE_SIZE, (cell.getPos_y() - 3) * Entities.TILE_SIZE);
         _cell = cell;
         _cell.add_target();
-        animate = new Animate(this);
     }
 
     @Override
