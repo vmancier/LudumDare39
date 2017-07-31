@@ -30,25 +30,25 @@ public class Player extends Body {
 
     public boolean moveUp() {
         loseEnergy(Entities.ENERGY_COST_MOVE);
-        Main.playSound(sound,"../resources/Sounds/player_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/player_movement.wav",0.25);
         return super.moveUp();
     }
 
     public boolean moveDown() {
         loseEnergy(Entities.ENERGY_COST_MOVE);
-        Main.playSound(sound,"../resources/Sounds/player_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/player_movement.wav",0.25);
         return super.moveDown();
     }
 
     public boolean moveRight() {
         loseEnergy(Entities.ENERGY_COST_MOVE);
-        Main.playSound(sound,"../resources/Sounds/player_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/player_movement.wav",0.25);
         return super.moveRight();
     }
 
     public boolean moveLeft() {
         loseEnergy(Entities.ENERGY_COST_MOVE);
-        Main.playSound(sound,"../resources/Sounds/player_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/player_movement.wav",0.25);
         return super.moveLeft();
     }
 

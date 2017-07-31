@@ -18,22 +18,22 @@ public class Enemy extends Body {
     }
 
     public boolean moveUp() {
-        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveUp();
     }
 
     public boolean moveDown() {
-        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveDown();
     }
 
     public boolean moveRight() {
-        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveRight();
     }
 
     public boolean moveLeft() {
-        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
+        Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveLeft();
     }
 }

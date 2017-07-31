@@ -20,7 +20,7 @@ public class DrawGame {
 
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
     static Image img_menu = new Image("resources/menutest.jpg", true);
-    static private AudioClip _sound = new AudioClip(DrawGame.class.getResource("../resources/Sounds/enemy_movement.wav").toString());
+    private static AudioClip _sound = new AudioClip(DrawGame.class.getResource("../resources/Sounds/enemy_movement.wav").toString());
 
     public DrawGame() {
 
@@ -116,5 +116,9 @@ public class DrawGame {
 
         root.getChildren().add(health_bar);
         root.getChildren().add(hide_bar);
+    }
+
+    public static AudioClip getSound() {
+        return _sound;
     }
 }

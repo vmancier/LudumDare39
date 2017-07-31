@@ -78,6 +78,12 @@ public class Main extends Application {
             }
 
         });
+        play.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                playSound(_drawGame.getSound(),"../resources/Sounds/buttons.wav",0.25);
+            }
+        });
 
         Button settings = new Button();
         settings.setTranslateX(0);
@@ -88,16 +94,16 @@ public class Main extends Application {
 
             @Override
             public void handle(MouseEvent event) {
-                String musicFile = "src/resources/Sounds/Spinning.mp3";
-
-                Media sound = new Media(Paths.get(musicFile).toUri().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                mediaPlayer.play();
-
 
                 //drawSettings(primaryStage, root);
             }
 
+        });
+        settings.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                playSound(_drawGame.getSound(),"../resources/Sounds/buttons.wav",0.25);
+            }
         });
 
         Button quit = new Button();
@@ -112,6 +118,12 @@ public class Main extends Application {
                 System.exit(0);//Quitter le jeu
             }
 
+        });
+        quit.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                playSound(_drawGame.getSound(),"../resources/Sounds/buttons.wav",0.25);
+            }
         });
 
         root.getChildren().add(play);

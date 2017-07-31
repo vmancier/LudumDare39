@@ -34,7 +34,7 @@ public class Body {
     private Image[] _left = new Image[4];
     private Image[] _right = new Image[4];
     private int actual_sprite = 0;
-    protected AudioClip sound;
+    protected AudioClip _sound;
 
 
     public Body(int posX, int posY, int health, CharacterTypes character, GameModel.Observer observer) {
@@ -62,7 +62,7 @@ public class Body {
         // Init sons
         String soundFile = "../resources/Sounds/player_movement.wav";
         URL resource = getClass().getResource(soundFile);
-        sound = new AudioClip(resource.toString());
+        _sound = new AudioClip(resource.toString());
     }
 
     public void setPosition(int posX, int posY) {
