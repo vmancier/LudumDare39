@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ public class DrawGame {
 
     Rectangle background = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT, Color.BLACK);
     static Image img_menu = new Image("resources/menutest.jpg", true);
+    static private AudioClip _sound = new AudioClip(DrawGame.class.getResource("../resources/Sounds/enemy_movement.wav").toString());
 
     public DrawGame() {
 
@@ -78,6 +80,7 @@ public class DrawGame {
         }
         else if(energyPercentage < 0.25){
             energy_bar.setFill(Color.RED);
+            Main.playSound(_sound,"../resources/Sounds/lowHealth.wav",0.1);
         }
         else{
             energy_bar.setFill(Color.DARKORANGE);
@@ -102,6 +105,7 @@ public class DrawGame {
         }
         else if(healthPercentage < 0.25){
             health_bar.setFill(Color.BLUE);
+            Main.playSound(_sound,"../resources/Sounds/lowHealth.wav",0.1);
         }
         else{
             health_bar.setFill(Color.INDIGO);

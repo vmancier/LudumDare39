@@ -1,5 +1,6 @@
 package Model;
 
+import Application.Main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,22 +18,22 @@ public class Enemy extends Body {
     }
 
     public boolean moveUp() {
-        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveUp();
     }
 
     public boolean moveDown() {
-        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveDown();
     }
 
     public boolean moveRight() {
-        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveRight();
     }
 
     public boolean moveLeft() {
-        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        Main.playSound(sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveLeft();
     }
 }

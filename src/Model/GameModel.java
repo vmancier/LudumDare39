@@ -13,8 +13,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -27,7 +29,8 @@ public class GameModel implements Runnable {
     private ArrayList<Enemy> Enemies;
     private Player _player;
     private HashSet<KeyCode> keyPressed;
-
+    private AudioClip _sound;
+    private String _backgroundMusic;
     private int day;
 
     public GameModel() {
@@ -40,6 +43,11 @@ public class GameModel implements Runnable {
         for (int k = 0; k < 5; k++) {
             Enemies.add(new Enemy(k, k, ENEMY_HEALTH, CharacterTypes.Mob, observer));
         }
+
+         _backgroundMusic = "../resources/Sounds/backgroundMusic.mp3";
+        URL resource = getClass().getResource(_backgroundMusic);
+        _sound = new AudioClip(resource.toString());
+        Main.playSound(_sound,_backgroundMusic,1); //Fonctionne ! à décommenter si on ne fait pas de test de sons
     }
 
     public void setKeyListener(Scene scene){

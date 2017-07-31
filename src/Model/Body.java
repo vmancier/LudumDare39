@@ -60,7 +60,7 @@ public class Body {
         setPosition(pos_x,pos_y);
 
         // Init sons
-        String soundFile = "../resources/Sounds/sfx_movement_footstepsloop4_fast.wav";
+        String soundFile = "../resources/Sounds/player_movement.wav";
         URL resource = getClass().getResource(soundFile);
         sound = new AudioClip(resource.toString());
     }
@@ -164,15 +164,6 @@ public class Body {
     public boolean moveLeft() {
         animation(_left, Directions.left);
         return true;
-    }
-
-    public void playSound(String soundFile, double volume){
-        if(!sound.isPlaying()){
-            URL resource = getClass().getResource(soundFile);
-            sound = new AudioClip(resource.toString());
-            sound.setVolume(volume);
-            sound.play();
-        }
     }
 
     public void loseHealth(int damages){

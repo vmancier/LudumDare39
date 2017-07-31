@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.time.LocalTime;
 
@@ -128,6 +129,15 @@ public class Main extends Application {
 
     public void drawSubMenu(Stage primaryStage, Pane root) {
 
+    }
+
+    public static void playSound(AudioClip sound, String soundFile, double volume){
+        if(!sound.isPlaying()){
+            URL resource = Main.class.getResource(soundFile);
+            sound = new AudioClip(resource.toString());
+            sound.setVolume(volume);
+            sound.play();
+        }
     }
 
     public static Pane getRoot() {
