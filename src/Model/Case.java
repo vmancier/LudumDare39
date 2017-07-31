@@ -24,11 +24,10 @@ public class Case {
     private ImageView _imgSurbrillance;
     private ImageView _imgTarget;
 
-    public Case(GameModel.Observer observer, Image img, Image imgTarget) {
+    public Case(GameModel.Observer observer, Image img) {
         _observer = observer;
         _image = img;
         _imageView = new ImageView(_image);
-        _imgTarget = new ImageView(imgTarget);
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.caseClicked(this, e);
         });
@@ -55,12 +54,14 @@ public class Case {
         this.pos_x = pos_x;
         this._imageView.setX(pos_x * TILE_SIZE);
         this._imgSurbrillance.setX(pos_x * TILE_SIZE);
+        this._imgTarget.setX(pos_x * TILE_SIZE);
     }
 
     public void setPos_y(int pos_y) {
         this.pos_y = pos_y;
         this._imageView.setY(pos_y * TILE_SIZE);
         this._imgSurbrillance.setY(pos_y * TILE_SIZE);
+        this._imgTarget.setY(pos_y * TILE_SIZE);
     }
 
     public boolean is_free() {
@@ -100,7 +101,7 @@ public class Case {
 
     public void add_target(){
         this._target += 1;
-        if (_surbrillance==1){
+        if (_target==1){
             Main.getRoot().getChildren().add(_imgTarget);
         }
     }
@@ -132,6 +133,18 @@ public class Case {
 
     public int get_surbrillance() {
         return _surbrillance;
+    }
+
+    public ImageView get_imgTarget() {
+        return _imgTarget;
+    }
+
+    public boolean is_targeted(){
+        return _target>0;
+    }
+
+    public void set_imgTarget(ImageView _imgTarget) {
+        this._imgTarget = _imgTarget;
     }
 }
 

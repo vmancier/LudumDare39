@@ -40,10 +40,9 @@ public class GameModel implements Runnable {
     }
 
     public void setKeyListener(Scene scene){
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode());
                 keyPressed.add(event.getCode());
             }
         });

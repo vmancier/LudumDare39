@@ -47,8 +47,11 @@ public class DrawGame {
         for (int i = 0; i < TILE_PER_WIDTH; i++) {
             for (int j = 0; j < TILE_PER_HEIGHT; j++) {
                 root.getChildren().add(map.getCase(i, j).get_imageView());
-                if (map.getCase(i, j).get_surbrillance() > 0) {
+                if (map.getCase(i, j).is_surbrillance()) {
                     root.getChildren().add(map.getCase(i, j).get_imgSurbrillance());
+                }
+                if(map.getCase(i, j).is_targeted()){
+                    root.getChildren().add(map.getCase(i, j).get_imgTarget());
                 }
             }
         }
