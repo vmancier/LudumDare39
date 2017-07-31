@@ -28,7 +28,10 @@ public class GameModel implements Runnable {
     private Player _player;
     private HashSet<KeyCode> keyPressed;
 
+    private int day;
+
     public GameModel() {
+        day = 1;
         keyPressed=new HashSet<>();
         Observer observer = new Observer();
         map = new Map(observer);
@@ -52,10 +55,6 @@ public class GameModel implements Runnable {
                 keyPressed.remove(event.getCode());
             }
         });
-    }
-
-    public Player get_player() {
-        return _player;
     }
 
     public class Observer {
@@ -83,10 +82,6 @@ public class GameModel implements Runnable {
             e.getActionQueue().executeNext();
         }
         //Main.get_drawGame().update(this);
-    }
-
-    public Map getMap() {
-        return map;
     }
 
     private void updateCaseClicked(Case cell, MouseEvent e) {
@@ -130,10 +125,6 @@ public class GameModel implements Runnable {
         timeline.play();
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return Enemies;
-    }
-
     public boolean isFree(int i, int j){
         boolean free=true;
 
@@ -168,5 +159,20 @@ public class GameModel implements Runnable {
         return l;
     }
 
+    public int getDay() {
+        return day;
+    }
+
+    public Player get_player() {
+        return _player;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return Enemies;
+    }
+
+    public Map getMap() {
+        return map;
+    }
 
 }
