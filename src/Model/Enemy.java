@@ -17,6 +17,12 @@ public class Enemy extends Body {
         super(posX, posY, health, character, observer);
     }
 
+    //@Override
+    private void die(){
+        _imageView.setImage(null);
+        Main.get_model().killEnemy(this);
+    }
+
     public boolean moveUp() {
         Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveUp();
@@ -36,4 +42,5 @@ public class Enemy extends Body {
         Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);
         return super.moveLeft();
     }
+
 }
