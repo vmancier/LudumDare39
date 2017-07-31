@@ -24,6 +24,7 @@ public class Body {
     private ActionQueue actionQueue;
     private int pos_x;
     private int pos_y;
+    private int _health;
     private GameModel.Observer _observer;
     private Image _image;
     private ImageView _imageView;
@@ -35,9 +36,11 @@ public class Body {
     private Image[] _right = new Image[4];
     protected AudioClip sound;
 
-    public Body(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
+
+    public Body(int posX, int posY, int health, CharacterTypes character, GameModel.Observer observer) {
         actionQueue = new ActionQueue(this);
         _observer = observer;
+        _health = health;
         this.character = character;
 
         // Chargement des sprites
@@ -172,6 +175,14 @@ public class Body {
         }
     }
 
+    public void loseHealth(int damages){
+        if(_health>=damages){
+            _health-=damages;
+        }else{
+            System.out.println("vous n'avez plus de vie");
+        }
+    }
+
     public void stand() {
         get_imageView().setImage(_down[0]);
     }
@@ -205,6 +216,10 @@ public class Body {
 
     public int getPos_x() {
         return pos_x;
+    }
+
+    public int getHealth() {
+        return _health;
     }
 
     public ActionQueue getActionQueue() {

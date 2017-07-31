@@ -12,8 +12,8 @@ public class Enemy extends Body {
     private Image _image;
     private ImageView _imageView;
 
-    public Enemy (int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
-        super(posX, posY, character, observer);
+    public Enemy (int posX, int posY, int health,  CharacterTypes character, GameModel.Observer observer) {
+        super(posX, posY, health, character, observer);
     }
 
     public boolean moveUp() {
