@@ -3,6 +3,7 @@ package Model;
 import Application.DrawGame;
 import Application.Entities;
 import Application.Main;
+import Model.Actions.Action;
 import Model.Actions.MoveTo;
 import javafx.animation.*;
 import javafx.scene.input.MouseButton;
@@ -54,7 +55,6 @@ public class GameModel implements Runnable {
         _player.getActionQueue().executeNext();
         for (Body e : Enemies) {
             e.getActionQueue().executeNext();
-//            @TODO attention à la surbrillance
         }
         //Main.get_drawGame().update(this);
     }
@@ -84,8 +84,15 @@ public class GameModel implements Runnable {
         System.out.println("You clicked on Body");
         //A modifier si jamais ça plante
         if (CharacterTypes.Mob.equals(body.getCharacter())) {
-            body.getActionQueue().addLast(new MoveTo(body.getActionQueue(),
-                    map.getCase(_player.getPos_x(), _player.getPos_y())));
+            body.getActionQueue().clearQueue();
+            Action lastaction = _player.getActionQueue().getEnd();
+            if (lastaction instanceof MoveTo) {
+                Case cible=((MoveTo) lastaction).getTarget();
+                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), cible));
+
+            } else {
+                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
+            }
         }
         //Main.get_drawGame().update(this);
         final Timeline timeline = new Timeline();
