@@ -96,8 +96,6 @@ public class GameModel implements Runnable {
             _player.getActionQueue().clearQueue();
         }
         if (keyPressed.contains(KeyCode.A)) {
-            System.out.println(cell.is_free());
-            System.out.println(isFree(cell.getPos_x(), cell.getPos_y()));
             if (cell.is_free()) {
                 _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(), cell));
                 _player.getActionQueue().addLast(new Surcharge(cell));
@@ -130,9 +128,12 @@ public class GameModel implements Runnable {
 
     }
 
+    public void killEnemy(Body e){
+        Enemies.remove(e);
+    }
+
     public boolean isFree(int i, int j) {
         boolean free = true;
-
         if (!map.getCase(i, j).is_free()) free = false;
         if (_player.getPos_x() == i && _player.getPos_y() == j) free = false;
         for (Body e : Enemies) {

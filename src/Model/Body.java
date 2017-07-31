@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import Model.Actions.Directions;
 
 import java.net.URL;
+import java.util.Arrays;
 
 public class Body {
 
@@ -150,6 +151,33 @@ public class Body {
         timer.start();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Body)) return false;
+
+        Body body = (Body) o;
+
+        if (getPos_x() != body.getPos_x()) return false;
+        if (getPos_y() != body.getPos_y()) return false;
+        if (_health != body._health) return false;
+        if (actual_sprite != body.actual_sprite) return false;
+        if (!getActionQueue().equals(body.getActionQueue())) return false;
+        if (!_observer.equals(body._observer)) return false;
+        if (!_image.equals(body._image)) return false;
+        if (!get_imageView().equals(body.get_imageView())) return false;
+        if (getCharacter() != body.getCharacter()) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(_up, body._up)) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(_down, body._down)) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(_left, body._left)) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(_right, body._right)) return false;
+        return _sound != null ? _sound.equals(body._sound) : body._sound == null;
+    }
+
     public boolean moveUp() {
         animation(_up, Directions.up);
         return true;
@@ -178,8 +206,12 @@ public class Body {
         }
 
         if(_health==0){
-            System.out.println("vous n'avez plus de vie");
+
         }
+    }
+
+    private void die(){
+        System.out.println("vous n'avez plus de vie");
     }
 
     public void stand() {
