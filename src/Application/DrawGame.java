@@ -43,12 +43,8 @@ public class DrawGame {
 //        menu.setX(TILE_SIZE * TILE_PER_WIDTH);
 //        menu.setY(0);
         root.getChildren().add(menu);
-        Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
-        energy_bar.setFill(Color.GOLD);
-//        ImageView menu = new ImageView(img_menu);
-//        energy_bar.setX(0);
-//        energy_bar.setY(TILE_SIZE * TILE_PER_HEIGHT);
-        root.getChildren().add(energy_bar);
+        drawEnergyBar(root);
+
         for (int i = 0; i < TILE_PER_WIDTH; i++) {
             for (int j = 0; j < TILE_PER_HEIGHT; j++) {
                 root.getChildren().add(map.getCase(i, j).get_imageView());
@@ -66,6 +62,22 @@ public class DrawGame {
     public static void updateForeground(Pane root) {
         root.getChildren().remove(Main.get_model().get_player().get_imageView());
         root.getChildren().add(Main.get_model().get_player().get_imageView());
+    }
+
+    public static void drawEnergyBar(Pane root){
+        Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
+        energy_bar.setFill(Color.GOLD);
+        root.getChildren().add(energy_bar);
+
+        int energy = Main.get_model().get_player().getEnergy();
+        float energyPercentage =  (float)energy/Entities.ENERGY_MAX;
+        float hide_pos = energyPercentage*WINDOW_WIDTH;
+
+        Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, ENERGY_BAR_HEIGHT);
+        hide_bar.setFill(Color.GRAY);
+        root.getChildren().add(hide_bar);
+
+
     }
 
 }

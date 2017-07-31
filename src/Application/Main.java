@@ -69,13 +69,8 @@ public class Main extends Application {
                             last = t;
                             _model.run();
                         }
-                        /*root.getChildren().clear();
-                        _drawGame.update(root,_model);*/
                     }
                 }.start();
-
-                //_model.nextStep(elapsedTime);
-                //_drawGame.update(root,_model);
             }
 
         });
