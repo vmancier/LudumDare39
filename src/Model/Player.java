@@ -22,6 +22,7 @@ public class Player extends Body {
     private ImageView _imageView;
     private int energy;
 
+
     public Player(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         super(posX, posY, character, observer);
         energy = Entities.ENERGY_MAX;

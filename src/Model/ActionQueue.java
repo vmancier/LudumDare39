@@ -29,6 +29,10 @@ public class ActionQueue {
         return Queue.get(0);
     }
 
+    public Action getEnd() {
+        return Queue.get(Queue.size()-1);
+    }
+
     public void clearQueue() {
         while (Queue.size()!=0){
             this.endFirst();
