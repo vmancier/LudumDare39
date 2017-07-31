@@ -80,7 +80,7 @@ public class DrawGame {
         }
         else if(energyPercentage < 0.25){
             energy_bar.setFill(Color.RED);
-            Main.playSound(_sound,"../resources/Sounds/lowHealth.wav",0.1);
+            Main.playSound(_sound,"../resources/Sounds/lowEnergy.wav",0.1);
         }
         else{
             energy_bar.setFill(Color.DARKORANGE);
