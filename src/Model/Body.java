@@ -29,11 +29,11 @@ public class Body {
     private Image _image;
     private ImageView _imageView;
     private CharacterTypes character;
-    private String _sprites_path;
     private Image[] _up = new Image[4];
     private Image[] _down = new Image[4];
     private Image[] _left = new Image[4];
     private Image[] _right = new Image[4];
+    private int actual_sprite = 0;
     protected AudioClip sound;
 
 
@@ -44,7 +44,7 @@ public class Body {
         this.character = character;
 
         // Chargement des sprites
-        _sprites_path = "/resources/sprites/" + character.toString().toLowerCase() + "/";
+        String _sprites_path = "/resources/Sprites/" + character.toString().toLowerCase() + "/";
         for (int i = 0; i < 4; i++) {
             _up[i] = new Image(_sprites_path + "up/" + String.format("%d", i) + ".png");
             _down[i] = new Image(_sprites_path + "down/" + String.format("%d", i) + ".png");
@@ -76,15 +76,19 @@ public class Body {
         timeline.setCycleCount(1);
 
         //You can add a specific action when each frame is started.
+        long starter_time = System.currentTimeMillis();
         AnimationTimer timer = new AnimationTimer() {
             @Override
-            public void handle(long l) {
-                l = l / 100000000;
-                if (l % 8 < 2) {
+            public void handle(long unused) {
+                int x = 4;
+                long now = System.currentTimeMillis();
+                int elapsed = (int) (now % (Entities.ANIMATION_DURATION * x));
+                int step = Entities.ANIMATION_DURATION * (x/4);
+                if (elapsed < step) {
                     get_imageView().setImage(sprites[0]);
-                } else if (l % 8 < 4) {
+                } else if (elapsed < 2 * step) {
                     get_imageView().setImage(sprites[1]);
-                } else if (l % 8 < 6) {
+                } else if (elapsed < 3 * step) {
                     get_imageView().setImage(sprites[2]);
                 } else {
                     get_imageView().setImage(sprites[3]);
@@ -93,7 +97,7 @@ public class Body {
         };
 
         //create a keyFrame, the keyValue is reached at time 400ms
-        Duration duration = Duration.millis(300);
+        Duration duration = Duration.millis(Entities.ANIMATION_DURATION);
 
         //one can add a specific action when the keyframe is reached
         EventHandler<ActionEvent> onFinished = new EventHandler<ActionEvent>() {
@@ -202,6 +206,11 @@ public class Body {
 
     public ImageView get_imageView() {
         return _imageView;
+    }
+
+    public void next_sprite(Image[] sprites) {
+        actual_sprite = (actual_sprite + 1) % _up.length;
+        get_imageView().setImage(sprites[actual_sprite]);
     }
 
     private void setPos_x(int pos_x) {

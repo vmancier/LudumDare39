@@ -109,7 +109,6 @@ public class GameModel implements Runnable {
     }
 
     private void updateBodyClicked(Body body) {
-        System.out.println("You clicked on Body");
         //A modifier si jamais ça plante
         if (CharacterTypes.Mob.equals(body.getCharacter())) {
             body.getActionQueue().clearQueue();
@@ -122,12 +121,6 @@ public class GameModel implements Runnable {
                 body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y())));
             }
         }
-        //Main.get_drawGame().update(this);
-        final Timeline timeline = new Timeline();
-        final KeyValue kv = new KeyValue(body.get_imageView().xProperty(), Entities.TILE_SIZE * 5);
-        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
     }
 
     public ArrayList<Enemy> getEnemies() {
