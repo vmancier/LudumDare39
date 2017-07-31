@@ -19,34 +19,27 @@ public class Player extends Body {
     private Image _image;
     private ImageView _imageView;
 
-
-
     public Player(int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         super(posX, posY, character, observer);
-
-        String soundFile = "../resources/Sounds/sfx_movement_footstepsloop4_slow.wav";
-        URL resource = getClass().getResource(soundFile);
-        sound = new AudioClip(resource.toString());
-
     }
 
     public boolean moveUp() {
-        playSound("../resources/Sounds/sfx_movement_footstepsloop4_slow.wav");
+        playSound("../resources/Sounds/sfx_movement_footstepsloop4_fast.wav",0.5);
         return super.moveUp();
     }
 
     public boolean moveDown() {
-        playSound("../resources/Sounds/sfx_movement_footstepsloop4_slow.wav");
+        playSound("../resources/Sounds/sfx_movement_footstepsloop4_fast.wav",0.5);
         return super.moveDown();
     }
 
     public boolean moveRight() {
-        playSound("../resources/Sounds/sfx_movement_footstepsloop4_slow.wav");
+        playSound("../resources/Sounds/sfx_movement_footstepsloop4_fast.wav",0.5);
         return super.moveRight();
     }
 
     public boolean moveLeft() {
-        playSound("../resources/Sounds/sfx_movement_footstepsloop4_slow.wav");
+        playSound("../resources/Sounds/sfx_movement_footstepsloop4_fast.wav",0.5);
         return super.moveLeft();
     }
 

@@ -52,10 +52,15 @@ public class Body {
 
         setImage(_down[0]);
 
+        //Emplacement
         pos_x = posX;
         pos_y = posY;
-        setPos_x(pos_x);
-        setPos_y(pos_y);
+        setPosition(pos_x,pos_y);
+
+        // Init sons
+        String soundFile = "../resources/Sounds/sfx_movement_footstepsloop4_fast.wav";
+        URL resource = getClass().getResource(soundFile);
+        sound = new AudioClip(resource.toString());
     }
 
     public void setPosition(int posX, int posY) {
@@ -159,10 +164,11 @@ public class Body {
         return true;
     }
 
-    public void playSound(String soundFile){
+    public void playSound(String soundFile, double volume){
         if(!sound.isPlaying()){
             URL resource = getClass().getResource(soundFile);
             sound = new AudioClip(resource.toString());
+            sound.setVolume(volume);
             sound.play();
         }
     }
@@ -177,6 +183,7 @@ public class Body {
         _imageView.setOnMouseClicked((MouseEvent e) -> {
             _observer.bodyClicked(this);
         });
+
     }
 
     public ImageView get_imageView() {

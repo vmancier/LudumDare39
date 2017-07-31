@@ -15,4 +15,24 @@ public class Enemy extends Body {
     public Enemy (int posX, int posY, CharacterTypes character, GameModel.Observer observer) {
         super(posX, posY, character, observer);
     }
+
+    public boolean moveUp() {
+        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        return super.moveUp();
+    }
+
+    public boolean moveDown() {
+        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        return super.moveDown();
+    }
+
+    public boolean moveRight() {
+        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        return super.moveRight();
+    }
+
+    public boolean moveLeft() {
+        playSound("../resources/Sounds/sfx_sound_neutral6.wav",0.25);
+        return super.moveLeft();
+    }
 }
