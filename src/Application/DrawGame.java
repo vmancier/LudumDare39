@@ -68,29 +68,49 @@ public class DrawGame {
 
     public static void drawEnergyBar(Pane root){
         Rectangle energy_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
-        energy_bar.setFill(Color.GOLD);
-        root.getChildren().add(energy_bar);
 
         int energy = Main.get_model().get_player().getEnergy();
         float energyPercentage =  (float)energy/Entities.ENERGY_MAX;
         float hide_pos = energyPercentage*WINDOW_WIDTH;
 
+        if(energyPercentage > 0.5){
+            energy_bar.setFill(Color.GOLD);
+        }
+        else if(energyPercentage < 0.25){
+            energy_bar.setFill(Color.RED);
+        }
+        else{
+            energy_bar.setFill(Color.DARKORANGE);
+        }
+
         Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT+BAR_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
         hide_bar.setFill(Color.GRAY);
+
+        root.getChildren().add(energy_bar);
         root.getChildren().add(hide_bar);
     }
 
     public static void drawHealthBar(Pane root){
         Rectangle health_bar = new Rectangle(0, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
-        health_bar.setFill(Color.GREEN);
-        root.getChildren().add(health_bar);
 
         int health = Main.get_model().get_player().getHealth();
         float healthPercentage =  (float)health/Entities.HEALTH_MAX;
         float hide_pos = healthPercentage*WINDOW_WIDTH;
 
+        if(healthPercentage > 0.5){
+            health_bar.setFill(Color.DEEPSKYBLUE);
+        }
+        else if(healthPercentage < 0.25){
+            health_bar.setFill(Color.BLUE);
+        }
+        else{
+            health_bar.setFill(Color.INDIGO);
+        }
+
         Rectangle hide_bar = new Rectangle(hide_pos, TILE_SIZE * TILE_PER_HEIGHT, WINDOW_WIDTH, BAR_HEIGHT);
-        hide_bar.setFill(Color.BLUE);
+        hide_bar.setFill(Color.GREY);
+
+        root.getChildren().add(health_bar);
         root.getChildren().add(hide_bar);
     }
 }
