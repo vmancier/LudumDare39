@@ -4,6 +4,7 @@ import Application.DrawGame;
 import Application.Entities;
 import Application.Main;
 import Model.Actions.Action;
+import Model.Actions.Lazer;
 import Model.Actions.MoveTo;
 import Model.Actions.Surcharge;
 import javafx.animation.*;
@@ -116,20 +117,15 @@ public class GameModel implements Runnable {
     private void updateBodyClicked(Body body) {
         //A modifier si jamais ça plante
         if (CharacterTypes.Mob.equals(body.getCharacter())) {
-            body.getActionQueue().clearQueue();
-//            Action lastaction = _player.getActionQueue().getEnd();
-//            if (lastaction instanceof MoveTo) {
-//                Case cible=((MoveTo) lastaction).getTarget();
-//                body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), cible));
-//
-//            } else {
-            body.getActionQueue().addFirst(new MoveTo(body.getActionQueue(), map.getCase(_player.getPos_x(), _player.getPos_y()),1));
+            _player.getActionQueue().addLast(new MoveTo(_player.getActionQueue(),map.getCase(body.getPos_x(),body.getPos_y())));
+           _player.getActionQueue().addLast(new Lazer(_player,(Enemy) body));
         }
 
     }
 
     public void killEnemy(Body e){
         Enemies.remove(e);
+        Main.get_drawGame().update(this);
     }
 
     public boolean isFree(int i, int j) {

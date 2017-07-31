@@ -28,6 +28,11 @@ public class Player extends Body {
         _energy = Entities.ENERGY_MAX;
     }
 
+    @Override
+    public void die(){
+        System.out.println("vous n'avez plus de vie");
+    }
+
     public boolean moveUp() {
         loseEnergy(Entities.ENERGY_COST_MOVE);
         Main.playSound(_sound,"../resources/Sounds/player_movement.wav",0.25);

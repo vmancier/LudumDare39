@@ -12,16 +12,21 @@ public class Enemy extends Body {
     private GameModel.Observer _observer;
     private Image _image;
     private ImageView _imageView;
+    private Image _imgTargeted;
+    private ImageView _targeted;
+
 
     public Enemy (int posX, int posY, int health,  CharacterTypes character, GameModel.Observer observer) {
         super(posX, posY, health, character, observer);
+        _imgTargeted=new Image("resources/CibleMonstre.png", true);
+        _targeted=new ImageView(_imgTargeted);
     }
 
-    //@Override
-    private void die(){
-        _imageView.setImage(null);
+    @Override
+    public void die(){
         Main.get_model().killEnemy(this);
     }
+
 
     public boolean moveUp() {
         Main.playSound(_sound,"../resources/Sounds/enemy_movement.wav",0.25);

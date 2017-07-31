@@ -20,7 +20,7 @@ import Model.Actions.Directions;
 import java.net.URL;
 import java.util.Arrays;
 
-public class Body {
+public abstract class Body {
 
     private ActionQueue actionQueue;
     private int pos_x;
@@ -178,6 +178,8 @@ public class Body {
         return _sound != null ? _sound.equals(body._sound) : body._sound == null;
     }
 
+    public abstract void die();
+
     public boolean moveUp() {
         animation(_up, Directions.up);
         return true;
@@ -206,12 +208,8 @@ public class Body {
         }
 
         if(_health==0){
-
+            this.die();
         }
-    }
-
-    private void die(){
-        System.out.println("vous n'avez plus de vie");
     }
 
     public void stand() {
